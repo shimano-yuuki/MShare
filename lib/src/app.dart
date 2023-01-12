@@ -1,4 +1,5 @@
 //全体共有
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/account.dart';
@@ -28,10 +29,11 @@ class NavigationWidget extends StatefulWidget {
 }
 
 class _NavigationWidgetState extends State<NavigationWidget> {
-  static const _screens = [
+  final _screens = [
     HomeScreen(),
     PostScreen(),
-    AccountScreen(),
+    if (FirebaseAuth.instance.currentUser != null)
+      AccountScreen(FirebaseAuth.instance.currentUser!),
     MessageScreen(),
   ];
 
