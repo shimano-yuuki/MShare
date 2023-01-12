@@ -5,6 +5,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+int upload = 1;
+
 class PostPage extends StatefulWidget {
   @override
   _PostPageState createState() => _PostPageState();
@@ -23,7 +25,8 @@ class _PostPageState extends State<PostPage> {
       File _image = File(pickedFile!.path);
 
       /// Firebase Cloud Storageにアップロード
-      String uploadName = 'image.png';
+      String uploadName = 'image.png$upload';
+      upload = upload + 1;
       final storageRef =
           FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
       storageRef.putFile(_image);
@@ -39,7 +42,8 @@ class _PostPageState extends State<PostPage> {
       File _image = File(pickedFile!.path);
 
       /// Firebase Cloud Storageにアップロード
-      String uploadName = 'image.png';
+      String uploadName = 'image.png$upload';
+      upload = upload + 1;
       final storageRef =
           FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
       storageRef.putFile(_image);
