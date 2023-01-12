@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -9,31 +11,41 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  File? _image;
   final picker = ImagePicker();
 
-  Future getImageFromCamera() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+  /// ユーザIDの取得
+  final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
+  Future getImageFromCamera() async {
+    try {
+      final XFile? pickedFile =
+          await picker.pickImage(source: ImageSource.camera);
+      File _image = File(pickedFile!.path);
+
+      /// Firebase Cloud Storageにアップロード
+      String uploadName = 'image.png';
+      final storageRef =
+          FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
+      storageRef.putFile(_image);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future _getImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    try {
+      final XFile? pickedFile =
+          await picker.pickImage(source: ImageSource.gallery);
+      File _image = File(pickedFile!.path);
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
+      /// Firebase Cloud Storageにアップロード
+      String uploadName = 'image.png';
+      final storageRef =
+          FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
+      storageRef.putFile(_image);
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -47,7 +59,6 @@ class _PostPageState extends State<PostPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _image == null ? Text('画像はありません') : Image.file(_image!),
           SizedBox(
             height: 30,
           ),
