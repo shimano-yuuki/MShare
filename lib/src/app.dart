@@ -16,19 +16,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyStatefulWidget(),
+      home: const NavigationWidget(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
+class NavigationWidget extends StatefulWidget {
+  const NavigationWidget({Key? key}) : super(key: key);
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<NavigationWidget> createState() => _NavigationWidgetState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _NavigationWidgetState extends State<NavigationWidget> {
   static const _screens = [
     HomeScreen(),
     PostScreen(),
