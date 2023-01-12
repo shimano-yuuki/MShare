@@ -7,10 +7,10 @@ class MessageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('アカウント'),
+        title: const Text('メッセージ画面'),
       ),
       body: const Center(
-          child: Text('アカウント画面', style: TextStyle(fontSize: 32.0))),
+          child: Text('メッセージ画面', style: TextStyle(fontSize: 32.0))),
     );
   }
 }
