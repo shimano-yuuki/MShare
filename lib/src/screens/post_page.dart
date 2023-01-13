@@ -1,11 +1,10 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-int upload = 1;
 
 class PostPage extends StatefulWidget {
   @override
@@ -18,38 +17,47 @@ class _PostPageState extends State<PostPage> {
   /// ユーザIDの取得
   final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
 
-  Future getImageFromCamera() async {
-    try {
-      final XFile? pickedFile =
-          await picker.pickImage(source: ImageSource.camera);
-      File _image = File(pickedFile!.path);
+  ///ランダムに名前を取得する
+  String randomString(int length) {
+    const _randomChars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const _charsLength = _randomChars.length;
 
-      /// Firebase Cloud Storageにアップロード
-      String uploadName = 'image.png$upload';
-      upload = upload + 1;
-      final storageRef =
-          FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
-      storageRef.putFile(_image);
-    } catch (e) {
-      print(e);
-    }
+    final rand = new Random();
+    final codeUnits = new List.generate(
+      length,
+      (index) {
+        final n = rand.nextInt(_charsLength);
+        return _randomChars.codeUnitAt(n);
+      },
+    );
+    return new String.fromCharCodes(codeUnits);
+  }
+
+  Future getImageFromCamera() async {
+    String rand = randomString(15);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.camera);
+    File _image = File(pickedFile!.path);
+
+    /// Firebase Cloud Storageにアップロード
+    String uploadName = '$rand';
+    final storageRef =
+        FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
+    storageRef.putFile(_image);
   }
 
   Future _getImage() async {
-    try {
-      final XFile? pickedFile =
-          await picker.pickImage(source: ImageSource.gallery);
-      File _image = File(pickedFile!.path);
+    String rand = randomString(15);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
+    File _image = File(pickedFile!.path);
 
-      /// Firebase Cloud Storageにアップロード
-      String uploadName = 'image.png$upload';
-      upload = upload + 1;
-      final storageRef =
-          FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
-      storageRef.putFile(_image);
-    } catch (e) {
-      print(e);
-    }
+    /// Firebase Cloud Storageにアップロード
+    String uploadName = '$rand';
+    final storageRef =
+        FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
+    storageRef.putFile(_image);
   }
 
   @override
