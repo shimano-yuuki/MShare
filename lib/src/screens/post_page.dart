@@ -34,19 +34,6 @@ class _PostPageState extends State<PostPage> {
     return new String.fromCharCodes(codeUnits);
   }
 
-  Future getImageFromCamera() async {
-    String rand = randomString(15);
-    final XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.camera);
-    File _image = File(pickedFile!.path);
-
-    /// Firebase Cloud Storageにアップロード
-    String uploadName = '$rand';
-    final storageRef =
-        FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
-    storageRef.putFile(_image);
-  }
-
   Future _getImage() async {
     String rand = randomString(15);
     final XFile? pickedFile =
@@ -77,10 +64,6 @@ class _PostPageState extends State<PostPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              FloatingActionButton(
-                onPressed: getImageFromCamera,
-                child: Icon(Icons.add_a_photo),
-              ),
               FloatingActionButton(
                 onPressed: _getImage,
                 child: Icon(Icons.image),
