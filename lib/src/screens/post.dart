@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_achieve_app/src/screens/post_page.dart';
 
@@ -18,7 +19,8 @@ class PostScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PostPage(), // SecondPageは遷移先のクラス
+                builder: (context) => PostPage(
+                    FirebaseAuth.instance.currentUser!), // SecondPageは遷移先のクラス
               ),
             );
           },
