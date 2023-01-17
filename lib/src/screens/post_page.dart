@@ -55,13 +55,15 @@ class _PostPageState extends State<PostPage> {
   }
 
   Future postdata() async {
+    String? imageURL = null;
     String rand = randomString(15);
 
     /// Firebase Cloud Storageにアップロード
     String uploadName = '$rand';
     final storageRef =
         FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
-    storageRef.putFile(_image!);
+    final storedImage = await storageRef.putFile(_image!);
+    imageURL = await storedImage.ref.getDownloadURL();
 
     final date = DateTime.now().toLocal().toIso8601String(); // 現在の日時
     final email = widget.user.email; // AddPostPage のデータを参照
@@ -69,7 +71,12 @@ class _PostPageState extends State<PostPage> {
     await FirebaseFirestore.instance
         .collection('posts') // コレクションID指定
         .doc() // ドキュメントID自動生成
-        .set({'text': messageText, 'email': email, 'date': date});
+        .set({
+      'text': messageText,
+      'email': email,
+      'date': date,
+      'imgURL': imageURL,
+    });
     // 1つ前の画面に戻る
     if (!mounted) return;
     Navigator.of(context).pop();
