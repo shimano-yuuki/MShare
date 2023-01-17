@@ -62,17 +62,23 @@ class _PostPageState extends State<PostPage> {
     final storageRef =
         FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
     storageRef.putFile(_image!);
+
+    final date = DateTime.now().toLocal().toIso8601String(); // 現在の日時
+    final email = widget.user.email; // AddPostPage のデータを参照
+    // 投稿メッセージ用ドキュメント作成
+    await FirebaseFirestore.instance
+        .collection('posts') // コレクションID指定
+        .doc() // ドキュメントID自動生成
+        .set({'text': messageText, 'email': email, 'date': date});
+    // 1つ前の画面に戻る
+    if (!mounted) return;
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("投稿画面"), actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.image),
-          onPressed: postdata,
-        )
-      ]),
+      appBar: AppBar(title: Text("投稿画面")),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -106,21 +112,7 @@ class _PostPageState extends State<PostPage> {
           const SizedBox(height: 8),
           Container(
             width: double.infinity,
-            child: ElevatedButton(
-              child: Text('投稿'),
-              onPressed: () async {
-                final date =
-                    DateTime.now().toLocal().toIso8601String(); // 現在の日時
-                final email = widget.user.email; // AddPostPage のデータを参照
-                // 投稿メッセージ用ドキュメント作成
-                await FirebaseFirestore.instance
-                    .collection('posts') // コレクションID指定
-                    .doc() // ドキュメントID自動生成
-                    .set({'text': messageText, 'email': email, 'date': date});
-                // 1つ前の画面に戻る
-                Navigator.of(context).pop();
-              },
-            ),
+            child: ElevatedButton(child: Text('投稿'), onPressed: postdata),
           ),
         ],
       )),
