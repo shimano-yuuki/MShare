@@ -1,11 +1,10 @@
 //全体共有
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'screens/account.dart';
-import 'screens/home.dart';
-import 'screens/message.dart';
-import 'screens/post.dart';
+import 'package:share_achieve_app/screens/account.dart';
+import 'package:share_achieve_app/screens/home.dart';
+import 'package:share_achieve_app/screens/message.dart';
+import 'package:share_achieve_app/screens/post/post.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
