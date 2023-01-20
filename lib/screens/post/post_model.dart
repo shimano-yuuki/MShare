@@ -8,7 +8,10 @@ class PostModel extends ChangeNotifier {
 
   Future<void> fetchPostContent() async {
     // Firestoreからコレクション'books'(QuerySnapshot)を取得してdocsに代入。
-    final docs = await FirebaseFirestore.instance.collection('posts').get();
+    final docs = await FirebaseFirestore.instance
+        .collection('posts')
+        .orderBy('date')
+        .get();
 
     // getter docs: docs(List<QueryDocumentSnapshot<T>>型)のドキュメント全てをリストにして取り出す。
     // map(): Listの各要素をBookに変換
