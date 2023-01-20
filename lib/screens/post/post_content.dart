@@ -6,9 +6,9 @@ class PostContent {
   PostContent(DocumentSnapshot doc) {
     //　ドキュメントの持っているフィールド'text'をこのPostContentのフィールドtextに代入
     text = doc['text'];
-    // url = doc['imgURL'];
+    url = doc['imgURL'];
   }
   // Bookで扱うフィールドを定義しておく。
-  // late String url;
   late String text;
+  late String url;
 }

@@ -29,6 +29,7 @@ class PostScreen extends StatelessWidget {
                   return ListTile(
                     //　books[index]でList booksのindex番目の要素が取り出せる。
                     title: Text(post_content[index].text),
+                    subtitle: Image.network(post_content[index].url),
                   );
                 },
               );
