@@ -26,10 +26,20 @@ class PostScreen extends StatelessWidget {
                 itemCount: post_content.length,
                 // indexにはListのindexが入る。
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    //　books[index]でList booksのindex番目の要素が取り出せる。
-                    title: Text(post_content[index].text),
-                    subtitle: Image.network(post_content[index].url),
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          child: Text(
+                        post_content[index].text,
+                      )),
+                      Container(
+                        child: Image.network(
+                          post_content[index].url,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    ],
                   );
                 },
               );
