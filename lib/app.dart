@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:share_achieve_app/screens/account.dart';
 import 'package:share_achieve_app/screens/home.dart';
 import 'package:share_achieve_app/screens/message.dart';
-import 'package:share_achieve_app/screens/post/post.dart';
+import 'package:share_achieve_app/screens/post/post_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
