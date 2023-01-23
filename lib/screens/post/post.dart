@@ -21,25 +21,41 @@ class PostScreen extends StatelessWidget {
             builder: (context, model, child) {
               // FirestoreのドキュメントのList booksを取り出す。
               final post_content = model.post_content;
-              return ListView.builder(
+              return GridView.builder(
                 // Listの長さを先ほど取り出したbooksの長さにする。
-                itemCount: post_content.length,
+                padding: const EdgeInsets.all(10),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
                 // indexにはListのindexが入る。
+                itemCount: post_content.length,
                 itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
+                  return Container(
+                    color: Colors.grey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 25,
                           child: Text(
-                        post_content[index].text,
-                      )),
-                      Container(
-                        child: Image.network(
-                          post_content[index].url,
-                          fit: BoxFit.cover,
+                            post_content[index].text,
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ),
-                      )
-                    ],
+                        Expanded(
+                          child: Container(
+                            width: 200,
+                            child: Image.network(
+                              post_content[index].url,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 },
               );
@@ -56,7 +72,7 @@ class PostScreen extends StatelessWidget {
                 ),
               );
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
         ),
       ),

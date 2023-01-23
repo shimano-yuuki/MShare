@@ -18,6 +18,7 @@ class PostModel extends ChangeNotifier {
     // toList(): Map()から返ってきたIterable→Listに変換する。
     final post_content = docs.docs.map((doc) => PostContent(doc)).toList();
     this.post_content = post_content;
+    print(post_content.length);
     notifyListeners();
   }
 }
