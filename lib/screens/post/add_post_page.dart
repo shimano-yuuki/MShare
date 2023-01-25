@@ -18,9 +18,10 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  String messageText = '';
+  String titleText = '';
   File? _image;
   final picker = ImagePicker();
+  String explanationText = "";
 
   /// ユーザIDの取得
   final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
@@ -72,14 +73,16 @@ class _PostPageState extends State<PostPage> {
         .collection('posts') // コレクションID指定
         .doc() // ドキュメントID自動生成
         .set({
-      'text': messageText,
+      'titleText': titleText,
+      'explanationText': explanationText,
       'email': email,
       'date': date,
       'imgURL': imageURL,
     });
+
     // 1つ前の画面に戻る
     if (!mounted) return;
-    Navigator.of(context).pop();
+    Navigator.pop(context);
   }
 
   @override
@@ -87,41 +90,56 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       appBar: AppBar(title: Text("投稿画面")),
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 320.0, maxHeight: 320.0),
-            child: Container(
-                child: _image == null ? Text('画像はありません') : Image.file(_image!)),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          FloatingActionButton(
-            onPressed: _getImage,
-            child: Icon(Icons.image),
-          ),
-          // 投稿メッセージ入力
-          TextFormField(
-            decoration: InputDecoration(labelText: '投稿メッセージ'),
-            // 複数行のテキスト入力
-            keyboardType: TextInputType.multiline,
-            // 最大3行
-            maxLines: 3,
-            onChanged: (String value) {
-              setState(() {
-                messageText = value;
-              });
-            },
-          ),
-          const SizedBox(height: 8),
-          Container(
-            width: double.infinity,
-            child: ElevatedButton(child: Text('投稿'), onPressed: postdata),
-          ),
-        ],
+          child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 200.0, maxHeight: 200.0),
+              child: Container(
+                  child:
+                      _image == null ? Text('画像はありません') : Image.file(_image!)),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            FloatingActionButton(
+              onPressed: _getImage,
+              child: Icon(Icons.image),
+            ),
+
+            // 投稿メッセージ入力
+            TextFormField(
+              decoration: InputDecoration(labelText: '題名'),
+              // 複数行のテキスト入力
+              keyboardType: TextInputType.multiline,
+              // 最大3行
+              maxLines: 2,
+              onChanged: (String value) {
+                setState(() {
+                  titleText = value;
+                });
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: '説明'),
+              // 複数行のテキスト入力
+              keyboardType: TextInputType.multiline,
+              // 最大3行
+              maxLines: 5,
+              onChanged: (String value) {
+                setState(() {
+                  explanationText = value;
+                });
+              },
+            ),
+            const SizedBox(height: 8),
+            Container(
+              width: double.infinity,
+              child: ElevatedButton(child: Text('投稿'), onPressed: postdata),
+            ),
+          ],
+        ),
       )),
     );
   }

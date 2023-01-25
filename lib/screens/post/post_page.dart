@@ -5,9 +5,14 @@ import 'package:share_achieve_app/screens/post/add_post_page.dart';
 import 'package:share_achieve_app/screens/post/post_detail.dart';
 import 'package:share_achieve_app/screens/post/post_model.dart';
 
-class PostScreen extends StatelessWidget {
-  const PostScreen({Key? key}) : super(key: key);
+class PostScreen extends StatefulWidget {
+  const PostScreen({super.key});
 
+  @override
+  State<PostScreen> createState() => _PostScreenState();
+}
+
+class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +26,7 @@ class PostScreen extends StatelessWidget {
           body: Consumer<PostModel>(
             builder: (context, model, child) {
               // FirestoreのドキュメントのList booksを取り出す。
-              final post_content = model.post_content;
+              final post_content = model.postContentList;
               return GridView.builder(
                 // Listの長さを先ほど取り出したbooksの長さにする。
                 padding: const EdgeInsets.all(10),
@@ -35,7 +40,6 @@ class PostScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
-                      color: Colors.grey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         // crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,8 +47,8 @@ class PostScreen extends StatelessWidget {
                           Container(
                             height: 25,
                             child: Text(
-                              post_content[index].text,
-                              style: const TextStyle(color: Colors.white),
+                              post_content[index].titleText,
+                              style: const TextStyle(color: Colors.black),
                             ),
                           ),
                           Expanded(
@@ -65,7 +69,7 @@ class PostScreen extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => PostDetail(
                             imageUrl: post_content[index].url,
-                            imageTitle: post_content[index].text,
+                            imageTitle: post_content[index].titleText,
                           ), // SecondPageは遷移先のクラス
                         ),
                       );

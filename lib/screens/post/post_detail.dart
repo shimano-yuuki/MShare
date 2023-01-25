@@ -13,16 +13,22 @@ class PostDetail extends StatelessWidget {
         title: Text(imageTitle),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(10.0),
         child: Center(
-          child: Expanded(
-            child: Container(
-              color: Colors.blue,
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  color: Colors.blue,
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ),
-            ),
+              Text(
+                  "datiiiiiiiiiiiiiいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいiiiiiiiiiiiいいいいいfふえへいるへいうhれいうへうぃうへいふいfふfひうfひうへいへうぃうふぇふぇhwふぇwhふぇhふぃうぇhふぃううぇhふぃうhふぃうwhふぃa")
+            ],
           ),
         ),
       ),
