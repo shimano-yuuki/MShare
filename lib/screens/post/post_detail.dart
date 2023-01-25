@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 class PostDetail extends StatelessWidget {
   const PostDetail(
-      {super.key, required this.imageUrl, required this.imageTitle});
+      {super.key,
+      required this.imageUrl,
+      required this.imageTitle,
+      required this.imageExplanation});
   final String imageUrl;
   final String imageTitle;
+  final String imageExplanation;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +30,7 @@ class PostDetail extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                  "datiiiiiiiiiiiiiいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいiiiiiiiiiiiいいいいいfふえへいるへいうhれいうへうぃうへいふいfふfひうfひうへいへうぃうふぇふぇhwふぇwhふぇhふぃうぇhふぃううぇhふぃうhふぃうwhふぃa")
+              Text(imageExplanation),
             ],
           ),
         ),

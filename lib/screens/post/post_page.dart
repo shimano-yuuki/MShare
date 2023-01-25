@@ -70,6 +70,8 @@ class _PostScreenState extends State<PostScreen> {
                           builder: (context) => PostDetail(
                             imageUrl: post_content[index].url,
                             imageTitle: post_content[index].titleText,
+                            imageExplanation:
+                                post_content[index].explanationText,
                           ), // SecondPageは遷移先のクラス
                         ),
                       );

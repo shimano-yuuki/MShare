@@ -8,9 +8,11 @@ class PostContent {
     //　ドキュメントの持っているフィールド'text'をこのPostContentのフィールドtextに代入
     titleText = doc['titleText'];
     url = doc['imgURL'];
+    explanationText = doc['explanationText'];
   }
   // Bookで扱うフィールドを定義しておく。
   late String id;
   late String titleText;
   late String url;
+  late String explanationText;
 }
