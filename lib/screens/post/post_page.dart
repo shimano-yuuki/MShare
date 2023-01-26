@@ -40,6 +40,7 @@ class _PostScreenState extends State<PostScreen> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
+                      color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         // crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +49,7 @@ class _PostScreenState extends State<PostScreen> {
                             height: 25,
                             child: Text(
                               post_content[index].titleText,
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ),
                           Expanded(
@@ -92,7 +93,10 @@ class _PostScreenState extends State<PostScreen> {
                 ),
               );
             },
-            child: const Icon(Icons.add),
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
