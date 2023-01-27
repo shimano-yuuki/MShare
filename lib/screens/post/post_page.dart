@@ -45,7 +45,7 @@ class _PostScreenState extends State<PostScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             height: 25,
                             child: Text(
                               post_content[index].titleText,
@@ -53,7 +53,7 @@ class _PostScreenState extends State<PostScreen> {
                             ),
                           ),
                           Expanded(
-                            child: Container(
+                            child: SizedBox(
                               width: 200,
                               child: Image.network(
                                 post_content[index].url,
@@ -64,8 +64,8 @@ class _PostScreenState extends State<PostScreen> {
                         ],
                       ),
                     ),
-                    onTap: () {
-                      Navigator.push(
+                    onTap: () async {
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => PostDetail(
@@ -73,30 +73,37 @@ class _PostScreenState extends State<PostScreen> {
                             imageTitle: post_content[index].titleText,
                             imageExplanation:
                                 post_content[index].explanationText,
+                            postContent: post_content[index],
                           ), // SecondPageは遷移先のクラス
                         ),
                       );
+                      await model.fetchPostContent();
                     },
                   );
                 },
               );
             },
           ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.blue,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PostPage(
-                      FirebaseAuth.instance.currentUser!), // SecondPageは遷移先のクラス
+          floatingActionButton: Consumer<PostModel>(
+            builder: (context, model, child) {
+              return FloatingActionButton(
+                backgroundColor: Colors.blue,
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PostPage(FirebaseAuth
+                          .instance.currentUser!), // SecondPageは遷移先のクラス
+                    ),
+                  );
+                  await model.fetchPostContent();
+                },
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
                 ),
               );
             },
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
           ),
         ),
       ),
