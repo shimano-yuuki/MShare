@@ -23,6 +23,8 @@ class _PostPageState extends State<PostPage> {
   final picker = ImagePicker();
   String explanationText = "";
 
+  bool isLoading = false;
+
   /// ユーザIDの取得
   final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
 
@@ -56,6 +58,10 @@ class _PostPageState extends State<PostPage> {
   }
 
   Future postdata() async {
+    setState(() {
+      isLoading = true;
+    });
+
     String? imageURL = null;
     String rand = randomString(15);
 
@@ -80,6 +86,10 @@ class _PostPageState extends State<PostPage> {
       'imgURL': imageURL,
     });
 
+    setState(() {
+      isLoading = false;
+    });
+
     // 1つ前の画面に戻る
     if (!mounted) return;
     Navigator.pop(context);
@@ -87,6 +97,14 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text("投稿画面")),
       body: Center(
