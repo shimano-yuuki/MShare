@@ -22,7 +22,7 @@ class PostDetail extends StatelessWidget {
         title: Text(imageTitle),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.delete,
               color: Colors.white,
             ),
