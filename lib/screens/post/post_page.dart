@@ -21,7 +21,7 @@ class _PostScreenState extends State<PostScreen> {
         create: (_) => PostModel()..fetchPostContent(),
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('投稿'),
+            title: const Text('投稿一覧'),
           ),
           body: Consumer<PostModel>(
             builder: (context, model, child) {
@@ -31,7 +31,7 @@ class _PostScreenState extends State<PostScreen> {
                 // Listの長さを先ほど取り出したbooksの長さにする。
                 padding: const EdgeInsets.all(10),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 3,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
