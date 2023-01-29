@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           body: Consumer<PostModel>(
             builder: (context, model, child) {
               // FirestoreのドキュメントのList booksを取り出す。
-              final post_content = model.postContentList;
+              final postContent = model.postContentList;
               return GridView.builder(
                 // Listの長さを先ほど取り出したbooksの長さにする。
                 padding: const EdgeInsets.all(10),
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSpacing: 10,
                 ),
                 // indexにはListのindexが入る。
-                itemCount: post_content.length,
+                itemCount: postContent.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                             height: 25,
                             child: Text(
-                              post_content[index].titleText,
+                              postContent[index].titleText,
                               style: const TextStyle(color: Colors.white),
                             ),
                           ),
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                               width: 200,
                               child: Image.network(
-                                post_content[index].url,
+                                postContent[index].url,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -67,11 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => PostDetail(
-                            imageUrl: post_content[index].url,
-                            imageTitle: post_content[index].titleText,
+                            imageUrl: postContent[index].url,
+                            imageTitle: postContent[index].titleText,
                             imageExplanation:
-                                post_content[index].explanationText,
-                            postContent: post_content[index],
+                                postContent[index].explanationText,
+                            postContent: postContent[index],
                           ), // SecondPageは遷移先のクラス
                         ),
                       );
