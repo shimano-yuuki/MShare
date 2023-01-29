@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:share_achieve_app/screens/post/add_post_page.dart';
 import 'package:share_achieve_app/screens/post/post_detail.dart';
 import 'package:share_achieve_app/screens/post/post_model.dart';
 
@@ -81,27 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   );
                 },
-              );
-            },
-          ),
-          floatingActionButton: Consumer<PostModel>(
-            builder: (context, model, child) {
-              return FloatingActionButton(
-                backgroundColor: Colors.blue,
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PostPage(FirebaseAuth
-                          .instance.currentUser!), // SecondPageは遷移先のクラス
-                    ),
-                  );
-                  await model.fetchPostContent();
-                },
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
               );
             },
           ),
