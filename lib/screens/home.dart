@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Listの長さを先ほど取り出したbooksの長さにする。
                 padding: const EdgeInsets.all(10),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 1,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Expanded(
                             child: SizedBox(
-                              width: 200,
+                              width: 400,
                               child: Image.network(
                                 postContent[index].url,
                                 fit: BoxFit.cover,
