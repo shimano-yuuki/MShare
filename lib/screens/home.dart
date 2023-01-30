@@ -29,17 +29,43 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: postContent.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    child: SizedBox(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
                       height: 400,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            child: Text(
-                              postContent[index].titleText,
-                              style: const TextStyle(color: Colors.black),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            height: 55,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                InkWell(
+                                  child: const CircleAvatar(),
+                                  onTap: () {},
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 15),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "せりざわ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        postContent[index].titleText,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                           Expanded(
