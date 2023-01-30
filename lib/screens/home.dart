@@ -19,26 +19,18 @@ class _HomeScreenState extends State<HomeScreen> {
         create: (_) => PostModel()..fetchPostContent(),
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('投稿'),
+            title: const Text('皆んなの投稿'),
           ),
           body: Consumer<PostModel>(
             builder: (context, model, child) {
               // FirestoreのドキュメントのList booksを取り出す。
               final postContent = model.postContentList;
-              return GridView.builder(
-                // Listの長さを先ほど取り出したbooksの長さにする。
-                padding: const EdgeInsets.all(10),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                // indexにはListのindexが入る。
+              return ListView.builder(
                 itemCount: postContent.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    child: Container(
-                      color: Colors.blue,
+                    child: SizedBox(
+                      height: 400,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         // crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,12 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 25,
                             child: Text(
                               postContent[index].titleText,
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.black),
                             ),
                           ),
                           Expanded(
                             child: SizedBox(
-                              width: 400,
+                              width: 500,
                               child: Image.network(
                                 postContent[index].url,
                                 fit: BoxFit.cover,

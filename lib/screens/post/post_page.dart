@@ -40,18 +40,12 @@ class _PostScreenState extends State<PostScreen> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
-                      color: Colors.blue,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 0.3)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            child: Text(
-                              post_content[index].titleText,
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          ),
                           Expanded(
                             child: SizedBox(
                               width: 200,
@@ -61,6 +55,15 @@ class _PostScreenState extends State<PostScreen> {
                               ),
                             ),
                           ),
+                          // SizedBox(
+                          //   height: 25,
+                          //   child: Text(
+                          //     post_content[index].titleText,
+                          //     style: const TextStyle(
+                          //       color: Colors.black,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
