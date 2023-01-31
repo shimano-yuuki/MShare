@@ -30,13 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
+                      margin: const EdgeInsets.symmetric(vertical: 10),
                       height: 400,
                       child: Column(
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             height: 55,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onTap: () {},
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 15),
+                                  padding: const EdgeInsets.only(left: 15),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
