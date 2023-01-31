@@ -24,7 +24,6 @@ class _PostPageState extends State<PostPage> {
   File? _image;
   final picker = ImagePicker();
   String explanationText = "";
-
   bool isLoading = false;
 
   /// ユーザIDの取得
