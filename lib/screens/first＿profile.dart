@@ -107,7 +107,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text("投稿画面")),
+      appBar: AppBar(title: const Text("プロフィール設定")),
       body: Center(
           child: SingleChildScrollView(
         child: Column(
@@ -118,7 +118,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
                   const BoxConstraints(maxWidth: 200.0, maxHeight: 200.0),
               child: Container(
                   child: _image == null
-                      ? const Text('画像はありません')
+                      ? const Text('プロフィール画像はありません')
                       : Image.file(_image!)),
             ),
             const SizedBox(
@@ -129,7 +129,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
               child: const Icon(Icons.image),
             ),
             TextFormField(
-              decoration: const InputDecoration(labelText: '説明'),
+              decoration: const InputDecoration(labelText: '名前'),
               // 複数行のテキスト入力
               keyboardType: TextInputType.multiline,
               // 最大3行
@@ -144,7 +144,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
             SizedBox(
               width: double.infinity,
               child:
-                  ElevatedButton(onPressed: postdata, child: const Text('投稿')),
+                  ElevatedButton(onPressed: postdata, child: const Text('設定')),
             ),
           ],
         ),

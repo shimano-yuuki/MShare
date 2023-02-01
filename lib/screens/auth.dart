@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_achieve_app/app.dart';
 
+import 'first＿profile.dart';
+
 class AuthWidget extends StatelessWidget {
   const AuthWidget({super.key});
   @override
@@ -110,7 +112,8 @@ class _LoginPageState extends State<LoginPage> {
                       // ignore: use_build_context_synchronously
                       await Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) {
-                          return const MyApp();
+                          return FirstProfileScreen(
+                              FirebaseAuth.instance.currentUser!);
                         }),
                       );
                     } catch (e) {
