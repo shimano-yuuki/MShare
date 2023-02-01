@@ -81,7 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                       // ignore: use_build_context_synchronously
                       await Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) {
-                          return const MyApp();
+                          return FirstProfileScreen(
+                              FirebaseAuth.instance.currentUser!);
                         }),
                       );
                     } catch (e) {
@@ -112,8 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                       // ignore: use_build_context_synchronously
                       await Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) {
-                          return FirstProfileScreen(
-                              FirebaseAuth.instance.currentUser!);
+                          return const MyApp();
                         }),
                       );
                     } catch (e) {
