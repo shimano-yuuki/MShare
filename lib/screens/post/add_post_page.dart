@@ -20,7 +20,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  String titleText = '';
+  String nameText = '';
   File? _image;
   final picker = ImagePicker();
   String explanationText = "";
@@ -82,7 +82,7 @@ class _PostPageState extends State<PostPage> {
         .collection('posts') // コレクションID指定
         .doc() // ドキュメントID自動生成
         .set({
-      'titleText': titleText,
+      'nameText': nameText,
       'explanationText': explanationText,
       'email': email,
       'date': date,
@@ -92,10 +92,6 @@ class _PostPageState extends State<PostPage> {
     setState(() {
       isLoading = false;
     });
-
-    // 1つ前の画面に戻る
-    if (!mounted) return;
-    Navigator.pop(context);
   }
 
   @override
@@ -140,7 +136,7 @@ class _PostPageState extends State<PostPage> {
               maxLines: 2,
               onChanged: (String value) {
                 setState(() {
-                  titleText = value;
+                  nameText = value;
                 });
               },
             ),

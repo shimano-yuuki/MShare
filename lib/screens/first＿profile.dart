@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:share_achieve_app/app.dart';
 
 class FirstProfileScreen extends StatefulWidget {
   // 引数からユーザー情報を受け取る
@@ -22,7 +23,7 @@ class FirstProfileScreen extends StatefulWidget {
 class _FirstProfileScreenState extends State<FirstProfileScreen> {
   File? _image;
   final picker = ImagePicker();
-  String explanationText = "";
+  String userName = "";
   bool isLoading = false;
 
   /// ユーザIDの取得
@@ -78,22 +79,24 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
     final email = widget.user.email; // AddPostPage のデータを参照
     // 投稿メッセージ用ドキュメント作成
     await FirebaseFirestore.instance
-        .collection('posts') // コレクションID指定
+        .collection('users') // コレクションID指定
         .doc() // ドキュメントID自動生成
         .set({
-      'explanationText': explanationText,
       'email': email,
       'date': date,
       'imgURL': imageURL,
+      'userName': userName,
     });
 
     setState(() {
       isLoading = false;
     });
-
-    // 1つ前の画面に戻る
-    if (!mounted) return;
-    Navigator.pop(context);
+    // ignore: use_build_context_synchronously
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) {
+        return const MyApp();
+      }),
+    );
   }
 
   @override
@@ -133,10 +136,10 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
               // 複数行のテキスト入力
               keyboardType: TextInputType.multiline,
               // 最大3行
-              maxLines: 5,
+              maxLines: 1,
               onChanged: (String value) {
                 setState(() {
-                  explanationText = value;
+                  userName = value;
                 });
               },
             ),
