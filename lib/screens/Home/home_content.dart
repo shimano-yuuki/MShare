@@ -1,9 +1,9 @@
 // firestoreのドキュメントを扱うクラスBookを作る。
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PostContent {
+class HomeContent {
   // ドキュメントを扱うDocumentSnapshotを引数にしたコンストラクタを作る
-  PostContent(DocumentSnapshot doc) {
+  HomeContent(DocumentSnapshot doc) {
     id = doc.id;
     //　ドキュメントの持っているフィールド'text'をこのPostContentのフィールドtextに代入
     titleText = doc['nameText'];

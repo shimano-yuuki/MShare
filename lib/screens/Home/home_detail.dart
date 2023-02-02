@@ -1,38 +1,26 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:share_achieve_app/screens/post/post_content.dart';
 
-class PostDetail extends StatelessWidget {
-  const PostDetail({
+import 'home_content.dart';
+
+class HomeDetail extends StatelessWidget {
+  const HomeDetail({
     super.key,
     required this.imageUrl,
     required this.imageTitle,
     required this.imageExplanation,
-    required this.postContent,
+    required this.homeContent,
   });
 
   final String imageUrl;
   final String imageTitle;
   final String imageExplanation;
-  final PostContent postContent;
+  final HomeContent homeContent;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(imageTitle),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              deletePost();
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -54,12 +42,5 @@ class PostDetail extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future deletePost() async {
-    await FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postContent.id)
-        .delete();
   }
 }

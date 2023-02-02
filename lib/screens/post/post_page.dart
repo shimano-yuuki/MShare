@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:share_achieve_app/screens/Home/home_model.dart';
 import 'package:share_achieve_app/screens/post/add_post_page.dart';
 import 'package:share_achieve_app/screens/post/post_detail.dart';
+import 'package:share_achieve_app/screens/post/post_model.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({super.key});

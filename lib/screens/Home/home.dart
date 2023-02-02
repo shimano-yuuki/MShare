@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:share_achieve_app/screens/Home/home_model.dart';
-import 'package:share_achieve_app/screens/post/post_detail.dart';
+
+import 'home_detail.dart';
+import 'home_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,18 +16,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: ChangeNotifierProvider<PostModel>(
-        create: (_) => PostModel()..fetchPostContent(),
+      home: ChangeNotifierProvider<HomeModel>(
+        create: (_) => HomeModel()..fetchHomeContent(),
         child: Scaffold(
           appBar: AppBar(
             title: const Text('皆んなの投稿'),
           ),
-          body: Consumer<PostModel>(
+          body: Consumer<HomeModel>(
             builder: (context, model, child) {
               // FirestoreのドキュメントのList booksを取り出す。
-              final postContent = model.postContentList;
+              final homeContent = model.homeContentList;
               return ListView.builder(
-                itemCount: postContent.length,
+                itemCount: homeContent.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        postContent[index].titleText,
+                                        homeContent[index].titleText,
                                         style: const TextStyle(
                                           color: Colors.black,
                                         ),
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                               width: 500,
                               child: Image.network(
-                                postContent[index].url,
+                                homeContent[index].url,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -84,16 +85,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PostDetail(
-                            imageUrl: postContent[index].url,
-                            imageTitle: postContent[index].titleText,
+                          builder: (context) => HomeDetail(
+                            imageUrl: homeContent[index].url,
+                            imageTitle: homeContent[index].titleText,
                             imageExplanation:
-                                postContent[index].explanationText,
-                            postContent: postContent[index],
+                                homeContent[index].explanationText,
+                            homeContent: homeContent[index],
                           ), // SecondPageは遷移先のクラス
                         ),
                       );
-                      await model.fetchPostContent();
+                      await model.fetchHomeContent();
                     },
                   );
                 },
