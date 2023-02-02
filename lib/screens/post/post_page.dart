@@ -26,7 +26,7 @@ class _PostScreenState extends State<PostScreen> {
           body: Consumer<PostModel>(
             builder: (context, model, child) {
               // FirestoreのドキュメントのList booksを取り出す。
-              final post_content = model.postContentList;
+              final postContent = model.postContentList;
               return GridView.builder(
                 // Listの長さを先ほど取り出したbooksの長さにする。
                 padding: const EdgeInsets.all(10),
@@ -36,7 +36,7 @@ class _PostScreenState extends State<PostScreen> {
                   mainAxisSpacing: 10,
                 ),
                 // indexにはListのindexが入る。
-                itemCount: post_content.length,
+                itemCount: postContent.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Container(
@@ -50,7 +50,7 @@ class _PostScreenState extends State<PostScreen> {
                             child: SizedBox(
                               width: 200,
                               child: Image.network(
-                                post_content[index].url,
+                                postContent[index].url,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -72,11 +72,11 @@ class _PostScreenState extends State<PostScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => PostDetail(
-                            imageUrl: post_content[index].url,
-                            imageTitle: post_content[index].titleText,
+                            imageUrl: postContent[index].url,
+                            imageTitle: postContent[index].titleText,
                             imageExplanation:
-                                post_content[index].explanationText,
-                            postContent: post_content[index],
+                                postContent[index].explanationText,
+                            postContent: postContent[index],
                           ), // SecondPageは遷移先のクラス
                         ),
                       );

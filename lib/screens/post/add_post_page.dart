@@ -79,8 +79,10 @@ class _PostPageState extends State<PostPage> {
     final email = widget.user.email; // AddPostPage のデータを参照
     // 投稿メッセージ用ドキュメント作成
     await FirebaseFirestore.instance
-        .collection('posts') // コレクションID指定
+        .collection('users') // コレクションID指定
         .doc() // ドキュメントID自動生成
+        .collection('data')
+        .doc()
         .set({
       'nameText': nameText,
       'explanationText': explanationText,
@@ -92,6 +94,10 @@ class _PostPageState extends State<PostPage> {
     setState(() {
       isLoading = false;
     });
+
+    // 1つ前の画面に戻る
+    if (!mounted) return;
+    Navigator.pop(context);
   }
 
   @override
