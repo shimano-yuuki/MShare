@@ -80,7 +80,7 @@ class _PostPageState extends State<PostPage> {
     // 投稿メッセージ用ドキュメント作成
     await FirebaseFirestore.instance
         .collection('users') // コレクションID指定
-        .doc() // ドキュメントID自動生成
+        .doc(userID) // ドキュメントID自動生成
         .collection('data')
         .doc()
         .set({
