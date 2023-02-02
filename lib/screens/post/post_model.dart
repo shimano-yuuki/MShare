@@ -3,14 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:share_achieve_app/screens/post/post_content.dart';
 
 class PostModel extends ChangeNotifier {
-
   // ListView.builderで使うためのBookのList booksを用意しておく。
   List<PostContent> postContentList = [];
 
   Future<void> fetchPostContent() async {
     // Firestoreからコレクション'books'(QuerySnapshot)を取得してdocsに代入。
     final docs = await FirebaseFirestore.instance
-        .collection('posts')
+        .collectionGroup('data')
         .orderBy('date', descending: true)
         .get();
 

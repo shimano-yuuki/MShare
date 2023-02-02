@@ -6,7 +6,7 @@ class PostContent {
   PostContent(DocumentSnapshot doc) {
     id = doc.id;
     //　ドキュメントの持っているフィールド'text'をこのPostContentのフィールドtextに代入
-    titleText = doc['titleText'];
+    titleText = doc['nameText'];
     url = doc['imgURL'];
     explanationText = doc['explanationText'];
   }
