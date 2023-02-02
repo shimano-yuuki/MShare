@@ -1,15 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:share_achieve_app/screens/post/post_content.dart';
 
 class PostModel extends ChangeNotifier {
+  final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
   // ListView.builderで使うためのBookのList booksを用意しておく。
   List<PostContent> postContentList = [];
 
   Future<void> fetchPostContent() async {
     // Firestoreからコレクション'books'(QuerySnapshot)を取得してdocsに代入。
     final docs = await FirebaseFirestore.instance
-        .collectionGroup('data')
+        .collection('users')
+        .doc(userID)
+        .collection('data')
         .orderBy('date', descending: true)
         .get();
 
