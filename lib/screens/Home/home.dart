@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "せりざわ",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
