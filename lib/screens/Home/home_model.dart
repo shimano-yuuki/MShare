@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:share_achieve_app/screens/post/post_content.dart';
+import 'package:share_achieve_app/screens/Home/home_content.dart';
 
 class PostModel extends ChangeNotifier {
   // ListView.builderで使うためのBookのList booksを用意しておく。

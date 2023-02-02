@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:share_achieve_app/screens/post/post_content.dart';
+import 'package:share_achieve_app/screens/Home/home_content.dart';
 
 class PostDetail extends StatelessWidget {
   const PostDetail(
