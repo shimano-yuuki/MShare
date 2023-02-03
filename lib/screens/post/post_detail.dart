@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_achieve_app/screens/post/post_content.dart';
+
+final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
 
 class PostDetail extends StatelessWidget {
   const PostDetail({
@@ -58,7 +61,9 @@ class PostDetail extends StatelessWidget {
 
   Future deletePost() async {
     await FirebaseFirestore.instance
-        .collection('posts')
+        .collection('users')
+        .doc(userID)
+        .collection('data')
         .doc(postContent.id)
         .delete();
   }

@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'auth.dart';
+import '../auth.dart';
 
 class AccountScreen extends StatelessWidget {
 // 引数からユーザー情報を受け取れるようにする
-  const AccountScreen(this.user);
+  const AccountScreen(this.user, {super.key});
   // ユーザー情報
   final User user;
   @override
@@ -31,7 +31,7 @@ class AccountScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
+      body: Container(
         // ユーザー情報を表示
         child: Text('ログイン情報：${user.email}'),
       ),

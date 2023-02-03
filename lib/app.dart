@@ -1,9 +1,8 @@
 //全体共有
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:share_achieve_app/screens/account.dart';
 import 'package:share_achieve_app/screens/Home/home.dart';
-import 'package:share_achieve_app/screens/message.dart';
+import 'package:share_achieve_app/screens/account/account.dart';
 import 'package:share_achieve_app/screens/post/post_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -32,8 +31,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
     HomeScreen(),
     PostScreen(),
     if (FirebaseAuth.instance.currentUser != null)
-      AccountScreen(FirebaseAuth.instance.currentUser!),
-    MessageScreen(),
+      AccountScreen(FirebaseAuth.instance.currentUser!)
   ];
 
   int _selectedIndex = 0;
@@ -55,8 +53,6 @@ class _NavigationWidgetState extends State<NavigationWidget> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム'),
             BottomNavigationBarItem(icon: Icon(Icons.post_add), label: '投稿'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.mail_outline), label: 'メッセージ'),
           ],
           type: BottomNavigationBarType.fixed,
         ));
