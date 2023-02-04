@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../auth.dart';
+import '../profile_setting.dart';
 import 'account_detail.dart';
 import 'account_model.dart';
 
@@ -48,7 +49,7 @@ class AccountScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 30),
+                            padding: const EdgeInsets.only(top: 25),
                             child: InkWell(
                               child: const CircleAvatar(
                                 radius: 45,
@@ -70,7 +71,8 @@ class AccountScreen extends StatelessWidget {
                                       width: 220,
                                       height: 50,
                                       color: Colors.red,
-                                      child: Text("data"))
+                                      child: Text(
+                                          "datafafjiefjeifjejijeijejiejfifjeifjefjiejfejfejfifjifwojowjfejifjfowejeifejifefjifjfifowowfjeijfjeijfjjjeijfiefjefjwojifejfieis"))
                                 ]),
                           ),
                           Padding(
@@ -84,7 +86,14 @@ class AccountScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(30),
                                     ),
                                     child: Text("編集")),
-                                onTap: () {},
+                                onTap: () async {
+                                  await Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(builder: (context) {
+                                      return ProfileScreen(
+                                          FirebaseAuth.instance.currentUser!);
+                                    }),
+                                  );
+                                },
                               ))
                         ]),
                   ),

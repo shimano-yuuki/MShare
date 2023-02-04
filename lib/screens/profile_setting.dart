@@ -9,18 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_achieve_app/app.dart';
 
-class FirstProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatefulWidget {
   // 引数からユーザー情報を受け取る
-  const FirstProfileScreen(this.user, {super.key});
+  const ProfileScreen(this.user, {super.key});
   // ユーザー情報
   final User user;
 
   @override
   // ignore: library_private_types_in_public_api
-  _FirstProfileScreenState createState() => _FirstProfileScreenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _FirstProfileScreenState extends State<FirstProfileScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   File? _image;
   final picker = ImagePicker();
   String userName = "";
