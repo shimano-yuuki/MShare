@@ -38,70 +38,107 @@ class AccountScreen extends StatelessWidget {
                 ),
               ],
             ),
-            body: Consumer<AccountModel>(
-              builder: (context, model, child) {
-                // FirestoreのドキュメントのList booksを取り出す。
-                final accountContent = model.accountContentList;
-                return GridView.builder(
-                  // Listの長さを先ほど取り出したbooksの長さにする。
-                  padding: const EdgeInsets.all(10),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+            body: Column(
+              children: [
+                Container(
+                  height: 140,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 18),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: InkWell(
+                              child: const CircleAvatar(
+                                radius: 45,
+                              ),
+                              onTap: () {},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                      padding: const EdgeInsets.only(top: 50),
+                                      child: Text("data")),
+                                  Container(
+                                      width: 220,
+                                      height: 50,
+                                      color: Colors.red,
+                                      child: Text("data"))
+                                ]),
+                          ),
+                          InkWell(child: Text("data"))
+                        ]),
                   ),
-                  // indexにはListのindexが入る。
-                  itemCount: accountContent.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Colors.black, width: 0.3)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: SizedBox(
-                                width: 200,
-                                child: Image.network(
-                                  accountContent[index].url,
-                                  fit: BoxFit.cover,
-                                ),
+                ),
+                Container(
+                  color: Colors.grey,
+                  height: 400,
+                  child: Consumer<AccountModel>(
+                    builder: (context, model, child) {
+                      // FirestoreのドキュメントのList booksを取り出す。
+                      final accountContent = model.accountContentList;
+                      return GridView.builder(
+                        // Listの長さを先ほど取り出したbooksの長さにする。
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                        ),
+                        // indexにはListのindexが入る。
+                        itemCount: accountContent.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      width: 200,
+                                      child: Image.network(
+                                        accountContent[index].url,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   height: 25,
+                                  //   child: Text(
+                                  //     post_content[index].titleText,
+                                  //     style: const TextStyle(
+                                  //       color: Colors.black,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                ],
                               ),
                             ),
-                            // SizedBox(
-                            //   height: 25,
-                            //   child: Text(
-                            //     post_content[index].titleText,
-                            //     style: const TextStyle(
-                            //       color: Colors.black,
-                            //     ),
-                            //   ),
-                            // ),
-                          ],
-                        ),
-                      ),
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AccountDetail(
-                              imageUrl: accountContent[index].url,
-                              imageTitle: accountContent[index].titleText,
-                              imageExplanation:
-                                  accountContent[index].explanationText,
-                              accountContent: accountContent[index],
-                            ), // SecondPageは遷移先のクラス
-                          ),
-                        );
-                        await model.fetchAccountContent();
-                      },
-                    );
-                  },
-                );
-              },
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AccountDetail(
+                                    imageUrl: accountContent[index].url,
+                                    imageTitle: accountContent[index].titleText,
+                                    imageExplanation:
+                                        accountContent[index].explanationText,
+                                    accountContent: accountContent[index],
+                                  ), // SecondPageは遷移先のクラス
+                                ),
+                              );
+                              await model.fetchAccountContent();
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ));
