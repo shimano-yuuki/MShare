@@ -57,13 +57,15 @@ class AccountScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 18),
+                            padding: const EdgeInsets.only(top: 50, left: 18),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Padding(
-                                      padding: const EdgeInsets.only(top: 50),
-                                      child: Text("data")),
+                                  Text(
+                                    "data",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
                                   Container(
                                       width: 220,
                                       height: 50,
@@ -71,7 +73,19 @@ class AccountScreen extends StatelessWidget {
                                       child: Text("data"))
                                 ]),
                           ),
-                          InkWell(child: Text("data"))
+                          Padding(
+                              padding: const EdgeInsets.only(top: 44, left: 14),
+                              child: InkWell(
+                                child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black, width: 0.7),
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    child: Text("編集")),
+                                onTap: () {},
+                              ))
                         ]),
                   ),
                 ),
