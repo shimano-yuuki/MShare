@@ -139,7 +139,7 @@ class _PostPageState extends State<PostPage> {
               // 複数行のテキスト入力
               keyboardType: TextInputType.multiline,
               // 最大3行
-              maxLines: 2,
+              maxLines: 1,
               onChanged: (String value) {
                 setState(() {
                   nameText = value;

@@ -7,7 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:share_achieve_app/app.dart';
 
 class ProfileScreen extends StatefulWidget {
   // 引数からユーザー情報を受け取る
@@ -60,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  Future postdata() async {
+  Future profileData() async {
     setState(() {
       isLoading = true;
     });
@@ -92,11 +91,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       isLoading = false;
     });
     // ignore: use_build_context_synchronously
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) {
-        return const MyApp();
-      }),
-    );
+    if (!mounted) return;
+    Navigator.pop(context);
   }
 
   @override
@@ -146,8 +142,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 8),
             SizedBox(
               width: double.infinity,
-              child:
-                  ElevatedButton(onPressed: postdata, child: const Text('設定')),
+              child: ElevatedButton(
+                  onPressed: profileData, child: const Text('設定')),
             ),
           ],
         ),

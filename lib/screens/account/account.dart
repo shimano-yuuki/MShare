@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../auth.dart';
-import '../profile_setting.dart';
 import 'account_detail.dart';
 import 'account_model.dart';
+import 'profile_setting.dart';
 
 class AccountScreen extends StatelessWidget {
 // 引数からユーザー情報を受け取れるようにする
@@ -20,7 +20,7 @@ class AccountScreen extends StatelessWidget {
           create: (_) => AccountModel()..fetchAccountContent(),
           child: Scaffold(
             appBar: AppBar(
-              title: const Text('アカウント画面'),
+              title: const Text(''),
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.logout),
@@ -70,7 +70,6 @@ class AccountScreen extends StatelessWidget {
                                   Container(
                                       width: 220,
                                       height: 50,
-                                      color: Colors.red,
                                       child: Text(
                                           "datafafjiefjeifjejijeijejiejfifjeifjefjiejfejfejfifjifwojowjfejifjfowejeifejifefjifjfifowowfjeijfjeijfjjjeijfiefjefjwojifejfieis"))
                                 ]),
@@ -99,8 +98,7 @@ class AccountScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: Colors.grey,
-                  height: 400,
+                  height: 500,
                   child: Consumer<AccountModel>(
                     builder: (context, model, child) {
                       // FirestoreのドキュメントのList booksを取り出す。
