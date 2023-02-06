@@ -86,77 +86,80 @@ class AccountScreen extends StatelessWidget {
                                     ),
                                     child: Text("編集")),
                                 onTap: () async {
-                                  await Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(builder: (context) {
-                                      return ProfileScreen(
-                                          FirebaseAuth.instance.currentUser!);
-                                    }),
+                                  await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => ProfileScreen(
+                                          FirebaseAuth.instance.currentUser!),
+                                    ),
                                   );
                                 },
                               ))
                         ]),
                   ),
                 ),
-                Container(
-                  height: 500,
-                  child: Consumer<AccountModel>(
-                    builder: (context, model, child) {
-                      // FirestoreのドキュメントのList booksを取り出す。
-                      final accountContent = model.accountContentList;
-                      return GridView.builder(
-                        // Listの長さを先ほど取り出したbooksの長さにする。
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                        ),
-                        // indexにはListのindexが入る。
-                        itemCount: accountContent.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            child: Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: SizedBox(
-                                      width: 200,
-                                      child: Image.network(
-                                        accountContent[index].url,
-                                        fit: BoxFit.cover,
+                Expanded(
+                  child: Container(
+                    color: Colors.lightBlue,
+                    child: Consumer<AccountModel>(
+                      builder: (context, model, child) {
+                        // FirestoreのドキュメントのList booksを取り出す。
+                        final accountContent = model.accountContentList;
+                        return GridView.builder(
+                          // Listの長さを先ほど取り出したbooksの長さにする。
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                          ),
+                          // indexにはListのindexが入る。
+                          itemCount: accountContent.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: SizedBox(
+                                        width: 200,
+                                        child: Image.network(
+                                          accountContent[index].url,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  // SizedBox(
-                                  //   height: 25,
-                                  //   child: Text(
-                                  //     post_content[index].titleText,
-                                  //     style: const TextStyle(
-                                  //       color: Colors.black,
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                ],
-                              ),
-                            ),
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AccountDetail(
-                                    imageUrl: accountContent[index].url,
-                                    imageTitle: accountContent[index].titleText,
-                                    imageExplanation:
-                                        accountContent[index].explanationText,
-                                    accountContent: accountContent[index],
-                                  ), // SecondPageは遷移先のクラス
+                                    // SizedBox(
+                                    //   height: 25,
+                                    //   child: Text(
+                                    //     post_content[index].titleText,
+                                    //     style: const TextStyle(
+                                    //       color: Colors.black,
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                  ],
                                 ),
-                              );
-                              await model.fetchAccountContent();
-                            },
-                          );
-                        },
-                      );
-                    },
+                              ),
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AccountDetail(
+                                      imageUrl: accountContent[index].url,
+                                      imageTitle:
+                                          accountContent[index].titleText,
+                                      imageExplanation:
+                                          accountContent[index].explanationText,
+                                      accountContent: accountContent[index],
+                                    ), // SecondPageは遷移先のクラス
+                                  ),
+                                );
+                                await model.fetchAccountContent();
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],

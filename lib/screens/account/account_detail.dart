@@ -29,17 +29,32 @@ class AccountDetail extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Container(
-                  color: Colors.blue,
+              Padding(
+                  padding: const EdgeInsets.only(top: 50, left: 6),
+                  child: Text(
+                    imageTitle,
+                    style: TextStyle(
+                      fontSize: 40,
+                    ),
+                  )),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 14),
                   child: Image.network(
                     imageUrl,
-                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-              Text(imageExplanation),
+              Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 6),
+                  child: Text(
+                    imageExplanation,
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  )),
             ],
           ),
         ),
