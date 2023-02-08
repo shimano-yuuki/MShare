@@ -99,7 +99,6 @@ class AccountScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    color: Colors.lightBlue,
                     child: Consumer<AccountModel>(
                       builder: (context, model, child) {
                         // FirestoreのドキュメントのList booksを取り出す。
