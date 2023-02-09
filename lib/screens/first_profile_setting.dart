@@ -8,17 +8,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ProfileScreen extends StatefulWidget {
+import '../app.dart';
+
+class FirstProfileScreen extends StatefulWidget {
   // 引数からユーザー情報を受け取る
-  const ProfileScreen(this.user, {super.key});
+  const FirstProfileScreen(this.user, {super.key});
   // ユーザー情報
   final User user;
   @override
   // ignore: library_private_types_in_public_api
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _FirstProfileScreenState createState() => _FirstProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _FirstProfileScreenState extends State<FirstProfileScreen> {
   File? _image;
   final picker = ImagePicker();
   String userName = "";
@@ -77,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await FirebaseFirestore.instance
         .collection('users') // コレクションID指定
         .doc(userID) // ドキュメントID自動生成
-        .update(
+        .set(
       {
         'imgURL': imageURL,
         'userName': userName,
@@ -89,8 +91,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       isLoading = false;
     });
     // ignore: use_build_context_synchronously
-    if (!mounted) return;
-    Navigator.pop(context);
+    await Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) {
+        return const MyApp();
+      }),
+    );
   }
 
   @override
