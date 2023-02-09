@@ -28,34 +28,34 @@ class AccountDetail extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.only(top: 50, left: 6),
-                  child: Text(
-                    imageTitle,
-                    style: TextStyle(
-                      fontSize: 40,
-                    ),
-                  )),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 14),
-                  child: Image.network(
-                    imageUrl,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  imageTitle,
+                  style: TextStyle(
+                    fontSize: 25,
                   ),
                 ),
-              ),
-              Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 6),
-                  child: Text(
-                    imageExplanation,
-                    style: TextStyle(
-                      fontSize: 20,
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 14),
+                    child: Image.network(
+                      imageUrl,
                     ),
-                  )),
-            ],
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 6),
+                    child: Text(
+                      imageExplanation,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    )),
+              ],
+            ),
           ),
         ),
       ),

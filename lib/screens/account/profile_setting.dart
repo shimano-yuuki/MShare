@@ -13,7 +13,6 @@ class ProfileScreen extends StatefulWidget {
   const ProfileScreen(this.user, {super.key});
   // ユーザー情報
   final User user;
-
   @override
   // ignore: library_private_types_in_public_api
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -23,6 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   File? _image;
   final picker = ImagePicker();
   String userName = "";
+  String selfIntroduction = "";
   bool isLoading = false;
 
   /// ユーザIDの取得
@@ -33,7 +33,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     const randomChars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const charsLength = randomChars.length;
-
     final rand = Random();
     final codeUnits = List.generate(
       length,
@@ -46,8 +45,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future _getImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
+    final pickedFile =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
@@ -63,7 +62,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       isLoading = true;
     });
-
     String? imageURL;
     String rand = randomString(15);
 
@@ -73,19 +71,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         FirebaseStorage.instance.ref().child('users/$userID/$uploadName');
     final storedImage = await storageRef.putFile(_image!);
     imageURL = await storedImage.ref.getDownloadURL();
-
-    final date = DateTime.now().toLocal().toIso8601String(); // 現在の日時
-    final email = widget.user.email; // AddPostPage のデータを参照
+    // AddPostPage のデータを参照
     // 投稿メッセージ用ドキュメント作成
     await FirebaseFirestore.instance
         .collection('users') // コレクションID指定
-        .doc() // ドキュメントID自動生成
-        .set({
-      'email': email,
-      'date': date,
-      'imgURL': imageURL,
-      'userName': userName,
-    });
+        .doc(userID) // ドキュメントID自動生成
+        .update(
+      {
+        'imgURL': imageURL,
+        'userName': userName,
+        'selfIntroduction': selfIntroduction,
+      },
+    );
 
     setState(() {
       isLoading = false;
@@ -117,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const BoxConstraints(maxWidth: 200.0, maxHeight: 200.0),
               child: Container(
                   child: _image == null
-                      ? const Text('プロフィール画像はありません')
+                      ? const Text('画像を選んでください')
                       : Image.file(_image!)),
             ),
             const SizedBox(
@@ -136,6 +133,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onChanged: (String value) {
                 setState(() {
                   userName = value;
+                });
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: '自己紹介'),
+              // 複数行のテキスト入力
+              keyboardType: TextInputType.multiline,
+              // 最大3行
+              maxLines: 6,
+              onChanged: (String value) {
+                setState(() {
+                  selfIntroduction = value;
                 });
               },
             ),

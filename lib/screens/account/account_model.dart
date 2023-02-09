@@ -14,7 +14,7 @@ class AccountModel extends ChangeNotifier {
     final docs = await FirebaseFirestore.instance
         .collection('users')
         .doc(userID)
-        .collection('data')
+        .collection('posts')
         .orderBy('date', descending: true)
         .get();
 

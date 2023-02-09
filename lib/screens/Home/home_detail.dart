@@ -25,19 +25,34 @@ class HomeDetail extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Center(
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  color: Colors.blue,
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.fill,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  imageTitle,
+                  style: TextStyle(
+                    fontSize: 25,
                   ),
                 ),
-              ),
-              Text(imageExplanation),
-            ],
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 14),
+                    child: Image.network(
+                      imageUrl,
+                    ),
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 6),
+                    child: Text(
+                      imageExplanation,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    )),
+              ],
+            ),
           ),
         ),
       ),

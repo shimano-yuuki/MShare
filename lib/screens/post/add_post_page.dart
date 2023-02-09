@@ -47,7 +47,8 @@ class _PostPageState extends State<PostPage> {
   }
 
   Future _getImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
 
     setState(() {
       if (pickedFile != null) {
@@ -60,7 +61,7 @@ class _PostPageState extends State<PostPage> {
     });
   }
 
-  Future postdata() async {
+  Future postData() async {
     setState(() {
       isLoading = true;
     });
@@ -81,7 +82,7 @@ class _PostPageState extends State<PostPage> {
     await FirebaseFirestore.instance
         .collection('users') // コレクションID指定
         .doc(userID) // ドキュメントID自動生成
-        .collection('data')
+        .collection('posts')
         .doc()
         .set({
       'nameText': nameText,
@@ -162,7 +163,7 @@ class _PostPageState extends State<PostPage> {
             SizedBox(
               width: double.infinity,
               child:
-                  ElevatedButton(onPressed: postdata, child: const Text('投稿')),
+                  ElevatedButton(onPressed: postData, child: const Text('投稿')),
             ),
           ],
         ),

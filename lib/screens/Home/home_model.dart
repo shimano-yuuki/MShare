@@ -9,7 +9,7 @@ class HomeModel extends ChangeNotifier {
   Future<void> fetchHomeContent() async {
     // Firestoreからコレクション'books'(QuerySnapshot)を取得してdocsに代入。
     final docs = await FirebaseFirestore.instance
-        .collectionGroup('data')
+        .collectionGroup('posts')
         .orderBy('date', descending: true)
         .get();
 
