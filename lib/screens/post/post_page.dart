@@ -7,7 +7,6 @@ import 'package:share_achieve_app/screens/post/post_model.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({super.key});
-
   @override
   State<PostScreen> createState() => _PostScreenState();
 }
