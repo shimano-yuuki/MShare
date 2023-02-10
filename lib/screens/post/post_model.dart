@@ -24,8 +24,4 @@ class PostModel extends ChangeNotifier {
     postContentList = postContent;
     notifyListeners();
   }
-
-  Future<void> deletePost(String postId) async {
-    await FirebaseFirestore.instance.collection('posts').doc(postId).delete();
-  }
 }

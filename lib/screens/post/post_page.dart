@@ -15,99 +15,95 @@ class PostScreen extends StatefulWidget {
 class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: ChangeNotifierProvider<PostModel>(
-        create: (_) => PostModel()..fetchPostContent(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('投稿一覧'),
-          ),
-          body: Consumer<PostModel>(
-            builder: (context, model, child) {
-              // FirestoreのドキュメントのList booksを取り出す。
-              final postContent = model.postContentList;
-              return GridView.builder(
-                // Listの長さを先ほど取り出したbooksの長さにする。
-                padding: const EdgeInsets.all(10),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                // indexにはListのindexが入る。
-                itemCount: postContent.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 0.3)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              width: 200,
-                              child: Image.network(
-                                postContent[index].url,
-                                fit: BoxFit.cover,
-                              ),
+    return ChangeNotifierProvider<PostModel>(
+      create: (_) => PostModel()..fetchPostContent(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('投稿一覧'),
+        ),
+        body: Consumer<PostModel>(
+          builder: (context, model, child) {
+            // FirestoreのドキュメントのList booksを取り出す。
+            final postContent = model.postContentList;
+            return GridView.builder(
+              // Listの長さを先ほど取り出したbooksの長さにする。
+              padding: const EdgeInsets.all(10),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              // indexにはListのindexが入る。
+              itemCount: postContent.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 0.3)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            width: 200,
+                            child: Image.network(
+                              postContent[index].url,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          // SizedBox(
-                          //   height: 25,
-                          //   child: Text(
-                          //     post_content[index].titleText,
-                          //     style: const TextStyle(
-                          //       color: Colors.black,
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    ),
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PostDetail(
-                            imageUrl: postContent[index].url,
-                            imageTitle: postContent[index].titleText,
-                            imageExplanation:
-                                postContent[index].explanationText,
-                            postContent: postContent[index],
-                          ), // SecondPageは遷移先のクラス
                         ),
-                      );
-                      await model.fetchPostContent();
-                    },
-                  );
-                },
-              );
-            },
-          ),
-          floatingActionButton: Consumer<PostModel>(
-            builder: (context, model, child) {
-              return FloatingActionButton(
-                backgroundColor: Colors.blue,
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PostPage(FirebaseAuth
-                          .instance.currentUser!), // SecondPageは遷移先のクラス
+                        // SizedBox(
+                        //   height: 25,
+                        //   child: Text(
+                        //     post_content[index].titleText,
+                        //     style: const TextStyle(
+                        //       color: Colors.black,
+                        //     ),
+                        //   ),
+                        // ),
+                      ],
                     ),
-                  );
-                  await model.fetchPostContent();
-                },
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-              );
-            },
-          ),
+                  ),
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostDetail(
+                          imageUrl: postContent[index].url,
+                          imageTitle: postContent[index].titleText,
+                          imageExplanation: postContent[index].explanationText,
+                          postContent: postContent[index],
+                        ), // SecondPageは遷移先のクラス
+                      ),
+                    );
+                    await model.fetchPostContent();
+                  },
+                );
+              },
+            );
+          },
+        ),
+        floatingActionButton: Consumer<PostModel>(
+          builder: (context, model, child) {
+            return FloatingActionButton(
+              backgroundColor: Colors.blue,
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PostPage(FirebaseAuth
+                        .instance.currentUser!), // SecondPageは遷移先のクラス
+                  ),
+                );
+                await model.fetchPostContent();
+              },
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            );
+          },
         ),
       ),
     );

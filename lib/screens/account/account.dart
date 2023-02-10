@@ -17,7 +17,9 @@ class AccountScreen extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(primarySwatch: Colors.blue),
         home: ChangeNotifierProvider<AccountModel>(
-          create: (_) => AccountModel()..fetchAccountContent(),
+          create: (_) => AccountModel()
+            ..fetchAccountContent()
+            ..fetchAccountContent(),
           child: Scaffold(
             appBar: AppBar(
               title: const Text(''),

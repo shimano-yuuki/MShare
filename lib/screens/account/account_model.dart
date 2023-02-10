@@ -25,8 +25,4 @@ class AccountModel extends ChangeNotifier {
     accountContentList = accountContent;
     notifyListeners();
   }
-
-  Future<void> deletePost(String postId) async {
-    await FirebaseFirestore.instance.collection('posts').doc(postId).delete();
-  }
 }
