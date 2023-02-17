@@ -2,7 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_achieve_app/screens/Home/home.dart';
-import 'package:share_achieve_app/screens/account/account.dart';
+import 'package:share_achieve_app/screens/account/account_page.dart';
 import 'package:share_achieve_app/screens/post/post_page.dart';
 
 class MyApp extends StatelessWidget {

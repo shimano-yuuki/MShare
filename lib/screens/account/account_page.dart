@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../auth.dart';
+import '../auth/auth.dart';
 import 'account_detail.dart';
-import 'account_model.dart';
-import 'profile_setting.dart';
+import 'account_page_model.dart';
+import 'account_profile_setting.dart';
 
 class AccountScreen extends StatelessWidget {
 // 引数からユーザー情報を受け取れるようにする

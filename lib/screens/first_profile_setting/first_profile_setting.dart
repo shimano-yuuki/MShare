@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../app.dart';
+import '../../app.dart';
 
 class FirstProfileScreen extends StatefulWidget {
   // 引数からユーザー情報を受け取る

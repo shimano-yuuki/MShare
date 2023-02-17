@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:share_achieve_app/screens/post/post_content.dart';
+import 'package:share_achieve_app/screens/post/post.dart';
 
 import '../account/account_detail.dart';
 
@@ -9,7 +9,7 @@ class PostDetailModel extends ChangeNotifier {
     required this.postContent,
   });
 
-  final PostContent postContent;
+  final Post postContent;
 
   Future<void> deletePost() async {
     await FirebaseFirestore.instance

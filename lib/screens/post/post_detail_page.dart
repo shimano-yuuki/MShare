@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:share_achieve_app/screens/post/post_content.dart';
-import 'package:share_achieve_app/screens/post/post_detail_model.dart';
+import 'package:share_achieve_app/screens/post/post.dart';
+import 'package:share_achieve_app/screens/post/post_detail_page_model.dart';
 
 final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
 
@@ -18,7 +18,7 @@ class PostDetail extends StatelessWidget {
   final String imageUrl;
   final String imageTitle;
   final String imageExplanation;
-  final PostContent postContent;
+  final Post postContent;
 
   @override
   Widget build(BuildContext context) {

@@ -2,16 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_achieve_app/screens/post/add_post_page.dart';
-import 'package:share_achieve_app/screens/post/post_detail.dart';
-import 'package:share_achieve_app/screens/post/post_model.dart';
+import 'package:share_achieve_app/screens/post/post_detail_page.dart';
+import 'package:share_achieve_app/screens/post/post_page_model.dart';
 
-class PostScreen extends StatefulWidget {
+class PostScreen extends StatelessWidget {
   const PostScreen({super.key});
-  @override
-  State<PostScreen> createState() => _PostScreenState();
-}
-
-class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<PostModel>(

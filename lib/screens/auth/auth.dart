@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_achieve_app/app.dart';
 
-import 'first_profile_setting.dart';
+import '../first_profile_setting/first_profile_setting.dart';
 
 class AuthWidget extends StatelessWidget {
   const AuthWidget({super.key});
