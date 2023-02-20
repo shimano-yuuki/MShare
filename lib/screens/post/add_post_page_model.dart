@@ -8,14 +8,14 @@ import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddPostModel extends ChangeNotifier {
-  AddPostModel(this.user);
+  AddPostModel(
+    this.user,
+  );
   final User user;
 
   final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
-  String nameText = '';
   File? image;
   final picker = ImagePicker();
-  String explanationText = "";
   bool isLoading = false;
 
   ///ランダムに名前を取得する
@@ -49,7 +49,7 @@ class AddPostModel extends ChangeNotifier {
     }
   }
 
-  Future postData() async {
+  Future postData(String nameText, String explanationText) async {
     isLoading = true;
     notifyListeners();
 
@@ -66,6 +66,8 @@ class AddPostModel extends ChangeNotifier {
     final date = DateTime.now().toLocal().toIso8601String(); // 現在の日時
     final email = user.email; // AddPostPage のデータを参照
     // 投稿メッセージ用ドキュメント作成
+    print(nameText);
+    print(explanationText);
     await FirebaseFirestore.instance
         .collection('users') // コレクションID指定
         .doc(userID) // ドキュメントID自動生成

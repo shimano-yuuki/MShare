@@ -1,6 +1,4 @@
-// firestoreのドキュメントを扱うクラスBookを作る。
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 class AccountContent {
   // ドキュメントを扱うDocumentSnapshotを引数にしたコンストラクタを作る
   AccountContent(DocumentSnapshot doc) {

@@ -47,15 +47,6 @@ class PostScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // SizedBox(
-                        //   height: 25,
-                        //   child: Text(
-                        //     post_content[index].titleText,
-                        //     style: const TextStyle(
-                        //       color: Colors.black,
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -68,7 +59,7 @@ class PostScreen extends StatelessWidget {
                           imageTitle: postContent[index].titleText,
                           imageExplanation: postContent[index].explanationText,
                           postContent: postContent[index],
-                        ), // SecondPageは遷移先のクラス
+                        ),
                       ),
                     );
                     await model.fetchPostContent();
