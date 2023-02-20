@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:share_achieve_app/screens/post/add_post_page_model.dart';
 
@@ -20,7 +19,6 @@ class PostPage extends StatefulWidget {
 class _PostPageState extends State<PostPage> {
   String nameText = '';
   String explanationText = '';
-  final picker = ImagePicker();
 
   /// ユーザIDの取得
   final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
