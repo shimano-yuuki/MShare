@@ -16,3 +16,12 @@ class HomeContent {
   late String url;
   late String explanationText;
 }
+
+class HomeUserContent {
+  HomeUserContent(DocumentSnapshot doc) {
+    selfIntroduction = doc['selfIntroduction'];
+    userName = doc['userName'];
+  }
+  late String selfIntroduction;
+  late String userName;
+}

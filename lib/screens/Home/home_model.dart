@@ -5,19 +5,29 @@ import 'package:share_achieve_app/screens/Home/home_content.dart';
 class HomeModel extends ChangeNotifier {
   // ListView.builderで使うためのBookのList booksを用意しておく。
   List<HomeContent> homeContentList = [];
-
+  List<HomeUserContent> homeUserContentList = [];
   Future<void> fetchHomeContent() async {
     // Firestoreからコレクション'books'(QuerySnapshot)を取得してdocsに代入。
     final docs = await FirebaseFirestore.instance
         .collectionGroup('posts')
         .orderBy('date', descending: true)
         .get();
-
     // getter docs: docs(List<QueryDocumentSnapshot<T>>型)のドキュメント全てをリストにして取り出す。
     // map(): Listの各要素をBookに変換
     // toList(): Map()から返ってきたIterable→Listに変換する。
     final homeContent = docs.docs.map((doc) => HomeContent(doc)).toList();
     homeContentList = homeContent;
+    notifyListeners();
+  }
+
+  Future<void> fetchHomeUserContent() async {
+    final docs = await FirebaseFirestore.instance
+        .collection('posts')
+        .orderBy('date', descending: true)
+        .get();
+    final homeUserContent =
+        docs.docs.map((doc) => HomeUserContent(doc)).toList();
+    homeUserContentList = homeUserContent;
     notifyListeners();
   }
 
