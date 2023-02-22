@@ -15,9 +15,7 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AccountModel>(
-      create: (_) => AccountModel()
-        ..fetchAccountContent()
-        ..fetchAccountContent(),
+      create: (_) => AccountModel()..fetchAccountContent(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text(''),

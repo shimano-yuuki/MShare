@@ -48,7 +48,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
 
   Future _getImage() async {
     final pickedFile =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 3);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);

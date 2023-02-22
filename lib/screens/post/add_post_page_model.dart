@@ -37,7 +37,7 @@ class AddPostModel extends ChangeNotifier {
 
   Future getImage() async {
     final pickedFile =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 3);
     if (pickedFile != null) {
       image = File(pickedFile.path);
       notifyListeners();
@@ -66,8 +66,6 @@ class AddPostModel extends ChangeNotifier {
     final date = DateTime.now().toLocal().toIso8601String(); // 現在の日時
     final email = user.email; // AddPostPage のデータを参照
     // 投稿メッセージ用ドキュメント作成
-    print(nameText);
-    print(explanationText);
     await FirebaseFirestore.instance
         .collection('users') // コレクションID指定
         .doc(userID) // ドキュメントID自動生成

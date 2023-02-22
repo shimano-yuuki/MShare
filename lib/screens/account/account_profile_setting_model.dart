@@ -37,7 +37,7 @@ class AccountProfileSettingModel extends ChangeNotifier {
 
   Future getImage() async {
     final pickedFile =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 3);
     if (pickedFile != null) {
       image = File(pickedFile.path);
       notifyListeners();
