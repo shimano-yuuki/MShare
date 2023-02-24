@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'account_content.dart';
+import 'account.dart';
 
 final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
 
@@ -17,7 +17,7 @@ class AccountDetail extends StatelessWidget {
   final String imageUrl;
   final String imageTitle;
   final String imageExplanation;
-  final AccountContent accountContent;
+  final Account accountContent;
 
   @override
   Widget build(BuildContext context) {

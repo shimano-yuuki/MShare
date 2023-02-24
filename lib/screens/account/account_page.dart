@@ -65,10 +65,7 @@ class AccountScreen extends StatelessWidget {
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Container(
-                                  width: 220,
-                                  height: 50,
-                                  child: Text(
-                                      "datafafjiefjeifjejijeijejiejfifjeifjefjiejfejfejfifjifwojowjfejifjfowejeifejifefjifjfifowowfjeijfjeijfjjjeijfiefjefjwojifejfieis"))
+                                  width: 220, height: 50, child: Text("あ"))
                             ]),
                       ),
                       Padding(
