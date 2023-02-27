@@ -86,6 +86,7 @@ class AddPostModel extends ChangeNotifier {
       'selfIntroduction': user.selfIntroduction,
       'userName': user.userName,
       'userImgURL': user.imgURL,
+      'userId': userID,
     });
     isLoading = false;
     notifyListeners();
