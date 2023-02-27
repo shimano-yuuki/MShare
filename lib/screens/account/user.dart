@@ -5,7 +5,9 @@ class User {
   User(DocumentSnapshot doc) {
     selfIntroduction = doc['selfIntroduction'];
     userName = doc['userName'];
+    imgURL = doc['imgURL'];
   }
   late String selfIntroduction;
   late String userName;
+  late String imgURL;
 }

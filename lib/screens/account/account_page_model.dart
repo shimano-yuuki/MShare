@@ -9,6 +9,7 @@ class AccountModel extends ChangeNotifier {
   final userID = auth.FirebaseAuth.instance.currentUser?.uid ?? '';
   // ListView.builderで使うためのBookのList booksを用意しておく。
   List<Account> accountContentList = [];
+  User? user;
 
   Future<void> fetchAccountContent() async {
     // Firestoreからコレクション'books'(QuerySnapshot)を取得してdocsに代入。
@@ -27,9 +28,11 @@ class AccountModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<User> fetchUser() async {
-    final doc = await FirebaseFirestore.instance.doc(userID).get();
+  Future fetchUser() async {
+    final doc =
+        await FirebaseFirestore.instance.collection('users').doc(userID).get();
     final user = User(doc);
-    return user;
+    this.user = user;
+    notifyListeners();
   }
 }

@@ -9,10 +9,16 @@ class HomeContent {
     titleText = doc['nameText'];
     url = doc['imgURL'];
     explanationText = doc['explanationText'];
+    selfIntroduction = doc['selfIntroduction'];
+    userName = doc['userName'];
+    userImgURL = doc['userImgURL'];
   }
   // Bookで扱うフィールドを定義しておく。
   late String id;
   late String titleText;
   late String url;
   late String explanationText;
+  late String selfIntroduction;
+  late String userName;
+  late String userImgURL;
 }

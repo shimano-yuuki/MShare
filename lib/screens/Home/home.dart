@@ -36,7 +36,11 @@ class HomeScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               InkWell(
-                                child: const CircleAvatar(),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.grey,
+                                  backgroundImage: NetworkImage(
+                                      homeContent[index].userImgURL),
+                                ),
                                 onTap: () {},
                               ),
                               Padding(
@@ -44,8 +48,8 @@ class HomeScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
-                                      "せりざわ",
+                                    Text(
+                                      homeContent[index].userName,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),

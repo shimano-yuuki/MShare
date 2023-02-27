@@ -2,18 +2,20 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../account/user.dart';
+
 class AddPostModel extends ChangeNotifier {
   AddPostModel(
-    this.user,
+    this.authUser,
   );
-  final User user;
+  final auth.User authUser;
 
-  final userID = FirebaseAuth.instance.currentUser?.uid ?? '';
+  final userID = auth.FirebaseAuth.instance.currentUser?.uid ?? '';
   File? image;
   final picker = ImagePicker();
   bool isLoading = false;
@@ -63,8 +65,12 @@ class AddPostModel extends ChangeNotifier {
     final storedImage = await storageRef.putFile(image!);
     imageURL = await storedImage.ref.getDownloadURL();
 
+    final doc =
+        await FirebaseFirestore.instance.collection('users').doc(userID).get();
+    final user = User(doc);
+
     final date = DateTime.now().toLocal().toIso8601String(); // 現在の日時
-    final email = user.email; // AddPostPage のデータを参照
+    final email = authUser.email; // AddPostPage のデータを参照
     // 投稿メッセージ用ドキュメント作成
     await FirebaseFirestore.instance
         .collection('users') // コレクションID指定
@@ -77,6 +83,9 @@ class AddPostModel extends ChangeNotifier {
       'email': email,
       'date': date,
       'imgURL': imageURL,
+      'selfIntroduction': user.selfIntroduction,
+      'userName': user.userName,
+      'userImgURL': user.imgURL,
     });
     isLoading = false;
     notifyListeners();
