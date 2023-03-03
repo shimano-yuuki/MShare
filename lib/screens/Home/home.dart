@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../account/account_page.dart';
 import 'home_detail.dart';
 import 'home_model.dart';
 
@@ -41,7 +43,16 @@ class HomeScreen extends StatelessWidget {
                                   backgroundImage: NetworkImage(
                                       homeContent[index].userImgURL),
                                 ),
-                                onTap: () {},
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AccountScreen(
+                                          FirebaseAuth.instance.currentUser!
+                                              .uid), // SecondPageは遷移先のクラス
+                                    ),
+                                  );
+                                },
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 15),
@@ -50,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     Text(
                                       homeContent[index].userName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(

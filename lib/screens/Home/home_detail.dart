@@ -47,7 +47,7 @@ class HomeDetail extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 20, left: 6),
                     child: Text(
                       imageExplanation,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     )),

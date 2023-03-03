@@ -9,9 +9,9 @@ import 'account_profile_setting.dart';
 
 class AccountScreen extends StatelessWidget {
 // 引数からユーザー情報を受け取れるようにする
-  const AccountScreen(this.user, {super.key});
+  const AccountScreen(this.uid, {super.key});
   // ユーザー情報
-  final User user;
+  final String uid;
 
   @override
   Widget build(BuildContext context) {
@@ -49,57 +49,52 @@ class AccountScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 18),
                   child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 25),
-                          child: InkWell(
-                            child: CircleAvatar(
-                              backgroundColor: Colors.grey,
-                              backgroundImage: NetworkImage(
-                                user?.imgURL ??
-                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATYAAACjCAMAAAA3vsLfAAAAA1BMVEV3d3dY20ihAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOBsYFAAFnhEPqAAAAAElFTkSuQmCC',
-                              ),
-                              radius: 45,
+                        InkWell(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            backgroundImage: NetworkImage(
+                              user?.imgURL ??
+                                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATYAAACjCAMAAAA3vsLfAAAAA1BMVEV3d3dY20ihAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOBsYFAAFnhEPqAAAAAElFTkSuQmCC',
                             ),
-                            onTap: () {},
+                            radius: 45,
                           ),
+                          onTap: () {},
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 50, left: 18),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  user?.userName ?? "",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Container(
-                                    width: 220,
-                                    height: 50,
-                                    child: Text(user?.selfIntroduction ?? ""))
-                              ]),
+                        SizedBox(width: 20),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                user?.userName ?? "",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(user?.selfIntroduction ?? "")
+                            ]),
+                        Spacer(),
+                        InkWell(
+                          child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 0.7),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Text("編集")),
+                          onTap: () async {
+                            await Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ProfileScreen(
+                                    FirebaseAuth.instance.currentUser!),
+                              ),
+                            );
+                          },
                         ),
-                        Padding(
-                            padding: const EdgeInsets.only(top: 44, left: 14),
-                            child: InkWell(
-                              child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black, width: 0.7),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  child: Text("編集")),
-                              onTap: () async {
-                                await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => ProfileScreen(
-                                        FirebaseAuth.instance.currentUser!),
-                                  ),
-                                );
-                              },
-                            ))
+                        SizedBox(
+                          width: 30,
+                        )
                       ]),
                 ),
               ),

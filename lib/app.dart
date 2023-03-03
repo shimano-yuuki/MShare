@@ -31,7 +31,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
     HomeScreen(),
     PostScreen(),
     if (FirebaseAuth.instance.currentUser != null)
-      AccountScreen(FirebaseAuth.instance.currentUser!)
+      AccountScreen(FirebaseAuth.instance.currentUser!.uid)
   ];
 
   int _selectedIndex = 0;
