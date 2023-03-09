@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -44,12 +43,12 @@ class HomeScreen extends StatelessWidget {
                                       homeContent[index].userImgURL),
                                 ),
                                 onTap: () async {
+                                  final uid = homeContent[index].uid;
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => AccountScreen(
-                                          FirebaseAuth.instance.currentUser!
-                                              .uid), // SecondPageは遷移先のクラス
+                                          uid), // SecondPageは遷移先のクラス
                                     ),
                                   );
                                 },

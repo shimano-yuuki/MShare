@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -28,8 +29,8 @@ class NavigationWidget extends StatefulWidget {
 
 class _NavigationWidgetState extends State<NavigationWidget> {
   final _screens = [
-    HomeScreen(),
-    PostScreen(),
+    const HomeScreen(),
+    const PostScreen(),
     if (FirebaseAuth.instance.currentUser != null)
       AccountScreen(FirebaseAuth.instance.currentUser!.uid)
   ];

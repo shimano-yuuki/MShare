@@ -2,15 +2,30 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_achieve_app/app.dart';
 
-import '../first_profile_setting/first_profile_setting.dart';
+import 'screens/first_profile_setting/first_profile_setting.dart';
 
 class AuthWidget extends StatelessWidget {
   const AuthWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: const LoginPage(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // スプラッシュ画面などに書き換えても良い
+            return const SizedBox();
+          }
+          if (snapshot.hasData) {
+            // User が null でなない、つまりサインイン済みのホーム画面へ
+            return const MyApp();
+          }
+          // User が null である、つまり未サインインのサインイン画面へ
+          return const LoginPage();
+        },
+      ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../auth/auth.dart';
+import '../../auth.dart';
 import 'account_detail.dart';
 import 'account_page_model.dart';
 import 'account_profile_setting.dart';
@@ -16,7 +16,7 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AccountModel>(
-      create: (_) => AccountModel()
+      create: (_) => AccountModel(uid)
         ..fetchAccountContent()
         ..fetchUser(),
       child: Consumer<AccountModel>(builder: (context, model, child) {
@@ -25,21 +25,22 @@ class AccountScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.logout),
-                onPressed: () async {
-                  // ログアウト処理
-                  // 内部で保持しているログイン情報等が初期化される
-                  // （現時点ではログアウト時はこの処理を呼び出せばOKと、思うぐらいで大丈夫です）
-                  await FirebaseAuth.instance.signOut();
-                  // ログイン画面に遷移＋チャット画面を破棄
-                  await Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) {
-                      return LoginPage();
-                    }),
-                  );
-                },
-              ),
+              if (FirebaseAuth.instance.currentUser!.uid == uid)
+                IconButton(
+                  icon: const Icon(Icons.logout),
+                  onPressed: () async {
+                    // ログアウト処理
+                    // 内部で保持しているログイン情報等が初期化される
+                    // （現時点ではログアウト時はこの処理を呼び出せばOKと、思うぐらいで大丈夫です）
+                    await FirebaseAuth.instance.signOut();
+                    // ログイン画面に遷移＋チャット画面を破棄
+                    await Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) {
+                        return LoginPage();
+                      }),
+                    );
+                  },
+                ),
             ],
           ),
           body: Column(
@@ -56,7 +57,7 @@ class AccountScreen extends StatelessWidget {
                             backgroundColor: Colors.grey,
                             backgroundImage: NetworkImage(
                               user?.imgURL ??
-                                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATYAAACjCAMAAAA3vsLfAAAAA1BMVEV3d3dY20ihAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOBsYFAAFnhEPqAAAAAElFTkSuQmCC',
+                                  'https://pics.prcm.jp/8fa8ecb4210ea/85340511/png/85340511_480x480.png',
                             ),
                             radius: 45,
                           ),
@@ -74,24 +75,25 @@ class AccountScreen extends StatelessWidget {
                               Text(user?.selfIntroduction ?? "")
                             ]),
                         Spacer(),
-                        InkWell(
-                          child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black, width: 0.7),
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Text("編集")),
-                          onTap: () async {
-                            await Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => ProfileScreen(
-                                    FirebaseAuth.instance.currentUser!),
-                              ),
-                            );
-                          },
-                        ),
+                        if (FirebaseAuth.instance.currentUser!.uid == uid)
+                          InkWell(
+                            child: Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black, width: 0.7),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Text("編集")),
+                            onTap: () async {
+                              await Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => ProfileScreen(
+                                      FirebaseAuth.instance.currentUser!),
+                                ),
+                              );
+                            },
+                          ),
                         SizedBox(
                           width: 30,
                         )

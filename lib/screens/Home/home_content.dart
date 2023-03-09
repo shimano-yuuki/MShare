@@ -12,6 +12,7 @@ class HomeContent {
     selfIntroduction = doc['selfIntroduction'];
     userName = doc['userName'];
     userImgURL = doc['userImgURL'];
+    uid = doc['userId'];
   }
   // Bookで扱うフィールドを定義しておく。
   late String id;
@@ -21,4 +22,5 @@ class HomeContent {
   late String selfIntroduction;
   late String userName;
   late String userImgURL;
+  late String uid;
 }

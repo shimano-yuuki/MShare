@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/cupertino.dart';
 
 import 'account.dart';
 import 'user.dart';
 
 class AccountModel extends ChangeNotifier {
-  final userID = auth.FirebaseAuth.instance.currentUser?.uid ?? '';
+  // ユーザー情報
+  AccountModel(this.uid);
+  final String uid;
   // ListView.builderで使うためのBookのList booksを用意しておく。
   List<Account> accountContentList = [];
   User? user;
@@ -15,7 +16,7 @@ class AccountModel extends ChangeNotifier {
     // Firestoreからコレクション'books'(QuerySnapshot)を取得してdocsに代入。
     final docs = await FirebaseFirestore.instance
         .collection('users')
-        .doc(userID)
+        .doc(uid)
         .collection('posts')
         .orderBy('date', descending: true)
         .get();
@@ -30,7 +31,7 @@ class AccountModel extends ChangeNotifier {
 
   Future fetchUser() async {
     final doc =
-        await FirebaseFirestore.instance.collection('users').doc(userID).get();
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
     final user = User(doc);
     this.user = user;
     notifyListeners();
