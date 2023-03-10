@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.share_achieve_app">
    <application
-        android:label="share_achieve_app"
+        android:label="MShare"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

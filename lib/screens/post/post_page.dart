@@ -12,6 +12,7 @@ class PostScreen extends StatelessWidget {
     return ChangeNotifierProvider<PostModel>(
       create: (_) => PostModel()..fetchPostContent(),
       child: Scaffold(
+        backgroundColor: Color(0xFF262626),
         appBar: AppBar(
           title: const Text('投稿一覧'),
         ),
