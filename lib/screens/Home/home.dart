@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     return ChangeNotifierProvider<HomeModel>(
       create: (_) => HomeModel()..fetchHomeContent(),
       child: Scaffold(
+        backgroundColor: Color(0xFF262626),
         appBar: AppBar(
           title: const Text('皆んなの投稿'),
         ),
@@ -61,12 +62,13 @@ class HomeScreen extends StatelessWidget {
                                     Text(
                                       homeContent[index].userName,
                                       style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
                                     ),
                                     Text(
                                       homeContent[index].titleText,
                                       style: const TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ],

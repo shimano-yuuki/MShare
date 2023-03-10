@@ -19,6 +19,7 @@ class HomeDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF262626),
       appBar: AppBar(
         title: Text(imageTitle),
       ),
@@ -31,9 +32,7 @@ class HomeDetail extends StatelessWidget {
               children: [
                 Text(
                   imageTitle,
-                  style: TextStyle(
-                    fontSize: 25,
-                  ),
+                  style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
                 Container(
                   child: Padding(
@@ -49,6 +48,7 @@ class HomeDetail extends StatelessWidget {
                       imageExplanation,
                       style: const TextStyle(
                         fontSize: 20,
+                        color: Colors.white,
                       ),
                     )),
               ],

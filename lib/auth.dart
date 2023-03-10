@@ -48,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF262626),
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(24),
@@ -56,16 +57,52 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               // メールアドレス入力
               TextFormField(
-                decoration: const InputDecoration(labelText: 'メールアドレス'),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'メールアドレス',
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
                 onChanged: (String value) {
                   setState(() {
                     email = value;
                   });
                 },
               ),
-              // パスワード入力
+              SizedBox(height: 20),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'パスワード'),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: const InputDecoration(
+                  labelText: 'パスワード',
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
                 obscureText: true,
                 onChanged: (String value) {
                   setState(() {
@@ -82,7 +119,12 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 // ユーザー登録ボタン
                 child: ElevatedButton(
-                  child: const Text('ユーザー登録'),
+                  child: const Text(
+                    'ユーザー登録',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                   onPressed: () async {
                     try {
                       // メール/パスワードでユーザー登録
@@ -114,7 +156,17 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 // ログイン登録ボタン
                 child: OutlinedButton(
-                  child: const Text('ログイン'),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(
+                      color: Colors.white, //枠線の色
+                    ),
+                  ),
+                  child: const Text(
+                    'ログイン',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                   onPressed: () async {
                     try {
                       // メール/パスワードでログイン

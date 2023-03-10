@@ -35,7 +35,7 @@ class PostScreen extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 0.3)),
+                        border: Border.all(color: Colors.white, width: 0.3)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

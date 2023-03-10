@@ -18,7 +18,25 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        decoration: InputDecoration(labelText: widget.labelText),
+        style: TextStyle(
+          color: Colors.white,
+        ),
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          labelText: widget.labelText,
+          labelStyle: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         // 複数行のテキスト入力
         keyboardType: TextInputType.multiline,
         // 最大3行

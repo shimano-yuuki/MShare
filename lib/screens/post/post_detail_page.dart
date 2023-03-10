@@ -25,6 +25,7 @@ class PostDetail extends StatelessWidget {
     return ChangeNotifierProvider<PostDetailModel>(
       create: (_) => PostDetailModel(postContent: postContent),
       child: Scaffold(
+        backgroundColor: Color(0xFF262626),
         appBar: AppBar(
           title: Text(imageTitle),
           actions: [

@@ -23,6 +23,7 @@ class AccountScreen extends StatelessWidget {
         // FirestoreのドキュメントのList booksを取り出す。
         final user = model.user;
         return Scaffold(
+          backgroundColor: Color(0xFF262626),
           appBar: AppBar(
             actions: <Widget>[
               if (FirebaseAuth.instance.currentUser!.uid == uid)
@@ -70,9 +71,17 @@ class AccountScreen extends StatelessWidget {
                             children: [
                               Text(
                                 user?.userName ?? "",
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
-                              Text(user?.selfIntroduction ?? "")
+                              Text(
+                                user?.selfIntroduction ?? "",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
                             ]),
                         Spacer(),
                         if (FirebaseAuth.instance.currentUser!.uid == uid)
@@ -81,10 +90,15 @@ class AccountScreen extends StatelessWidget {
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Colors.black, width: 0.7),
+                                      color: Colors.white, width: 0.7),
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: Text("編集")),
+                                child: Text(
+                                  "編集",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )),
                             onTap: () async {
                               await Navigator.of(context).push(
                                 MaterialPageRoute(

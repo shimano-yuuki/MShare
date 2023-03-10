@@ -102,6 +102,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
   Widget build(BuildContext context) {
     if (isLoading) {
       return const Scaffold(
+        backgroundColor: Color(0xFF262626),
         body: Center(
           child: CircularProgressIndicator(),
         ),
@@ -109,7 +110,14 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text("プロフィール設定")),
+      backgroundColor: Color(0xFF262626),
+      appBar: AppBar(
+          title: const Text(
+        "プロフィール設定",
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      )),
       body: Center(
           child: SingleChildScrollView(
         child: Column(
@@ -120,7 +128,12 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
                   const BoxConstraints(maxWidth: 200.0, maxHeight: 200.0),
               child: Container(
                   child: _image == null
-                      ? const Text('画像を選んでください')
+                      ? const Text(
+                          '画像を選んでください',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
                       : Image.file(_image!)),
             ),
             const SizedBox(
@@ -130,8 +143,27 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
               onPressed: _getImage,
               child: const Icon(Icons.image),
             ),
+            SizedBox(height: 20),
             TextFormField(
-              decoration: const InputDecoration(labelText: '名前'),
+              style: TextStyle(
+                color: Colors.white,
+              ),
+              decoration: const InputDecoration(
+                labelText: '名前',
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
               // 複数行のテキスト入力
               keyboardType: TextInputType.multiline,
               // 最大3行
@@ -142,23 +174,50 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
                 });
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
             TextFormField(
-              decoration: const InputDecoration(labelText: '自己紹介'),
+              style: TextStyle(
+                color: Colors.white,
+              ),
+              decoration: const InputDecoration(
+                labelText: '自己紹介',
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
               // 複数行のテキスト入力
               keyboardType: TextInputType.multiline,
               // 最大3行
-              maxLines: 6,
+              maxLines: 4,
               onChanged: (String value) {
                 setState(() {
                   selfIntroduction = value;
                 });
               },
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 25),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: profileData, child: const Text('設定')),
+                  onPressed: profileData,
+                  child: const Text(
+                    '設定',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )),
             ),
           ],
         ),

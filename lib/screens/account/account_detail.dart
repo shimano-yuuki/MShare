@@ -22,6 +22,7 @@ class AccountDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF262626),
       appBar: AppBar(
         title: Text(imageTitle),
       ),
@@ -34,9 +35,7 @@ class AccountDetail extends StatelessWidget {
               children: [
                 Text(
                   imageTitle,
-                  style: TextStyle(
-                    fontSize: 25,
-                  ),
+                  style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
                 Container(
                   child: Padding(
@@ -50,9 +49,7 @@ class AccountDetail extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 20, left: 6),
                     child: Text(
                       imageExplanation,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     )),
               ],
             ),

@@ -28,6 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         widget.user,
       ),
       child: Scaffold(
+        backgroundColor: Color(0xFF262626),
         appBar: AppBar(title: const Text("プロフィール設定")),
         body: Consumer<AccountProfileSettingModel>(
             builder: (context, model, child) {
@@ -48,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const BoxConstraints(maxWidth: 200.0, maxHeight: 200.0),
                   child: Container(
                       child: model.image == null
-                          ? const Text('画像を選んでください')
+                          ? const Text('画像を選んでください',
+                              style: TextStyle(color: Colors.white))
                           : Image.file(model.image!)),
                 ),
                 const SizedBox(
@@ -58,8 +60,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: model.getImage,
                   child: const Icon(Icons.image),
                 ),
+                SizedBox(height: 20),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: '名前'),
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: '名前',
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   // 複数行のテキスト入力
                   keyboardType: TextInputType.multiline,
                   // 最大3行
@@ -70,19 +91,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     });
                   },
                 ),
+                SizedBox(height: 20),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: '自己紹介'),
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: '自己紹介',
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   // 複数行のテキスト入力
                   keyboardType: TextInputType.multiline,
                   // 最大3行
-                  maxLines: 6,
+                  maxLines: 4,
                   onChanged: (String value) {
                     setState(() {
                       selfIntroduction = value;
                     });
                   },
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 25),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

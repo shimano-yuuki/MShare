@@ -30,10 +30,12 @@ class _PostPageState extends State<PostPage> {
         widget.user,
       ),
       child: Scaffold(
+        backgroundColor: Color(0xFF262626),
         appBar: AppBar(title: const Text("投稿画面")),
         body: Consumer<AddPostModel>(builder: (context, model, child) {
           if (model.isLoading) {
             return const Scaffold(
+              backgroundColor: Color(0xFF262626),
               body: Center(
                 child: CircularProgressIndicator(),
               ),
@@ -49,7 +51,12 @@ class _PostPageState extends State<PostPage> {
                       const BoxConstraints(maxWidth: 200.0, maxHeight: 200.0),
                   child: Container(
                       child: model.image == null
-                          ? const Text('画像はありません')
+                          ? const Text(
+                              '画像はありません',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )
                           : Image.file(model.image!)),
                 ),
                 const SizedBox(
@@ -59,7 +66,7 @@ class _PostPageState extends State<PostPage> {
                   onPressed: model.getImage,
                   child: const Icon(Icons.image),
                 ),
-
+                SizedBox(height: 20),
                 // 投稿メッセージ入力
                 CommonTextFormField(
                   labelText: '題名',
@@ -70,9 +77,10 @@ class _PostPageState extends State<PostPage> {
                     });
                   },
                 ),
+                SizedBox(height: 20),
                 CommonTextFormField(
                   labelText: '説明',
-                  maxLines: 5,
+                  maxLines: 3,
                   onChanged: (String value) {
                     setState(() {
                       explanationText = value;
