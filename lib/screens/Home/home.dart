@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Color(0xFF262626),
         appBar: AppBar(
+          backgroundColor: Color(0xFF262626),
           title: const Text('皆んなの投稿'),
         ),
         body: Consumer<HomeModel>(

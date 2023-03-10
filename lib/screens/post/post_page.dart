@@ -15,6 +15,7 @@ class PostScreen extends StatelessWidget {
         backgroundColor: Color(0xFF262626),
         appBar: AppBar(
           title: const Text('投稿一覧'),
+          backgroundColor: Color(0xFF262626),
         ),
         body: Consumer<PostModel>(
           builder: (context, model, child) {
@@ -73,7 +74,7 @@ class PostScreen extends StatelessWidget {
         floatingActionButton: Consumer<PostModel>(
           builder: (context, model, child) {
             return FloatingActionButton(
-              backgroundColor: Colors.blue,
+              backgroundColor: Color(0xFF0d4680),
               onPressed: () async {
                 await Navigator.push(
                   context,

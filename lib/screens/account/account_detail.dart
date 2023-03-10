@@ -24,6 +24,7 @@ class AccountDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF262626),
       appBar: AppBar(
+        backgroundColor: Color(0xFF262626),
         title: Text(imageTitle),
       ),
       body: Padding(

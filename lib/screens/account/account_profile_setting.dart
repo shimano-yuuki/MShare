@@ -29,7 +29,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       child: Scaffold(
         backgroundColor: Color(0xFF262626),
-        appBar: AppBar(title: const Text("プロフィール設定")),
+        appBar: AppBar(
+          title: const Text("プロフィール設定"),
+          backgroundColor: Color(0xFF262626),
+        ),
         body: Consumer<AccountProfileSettingModel>(
             builder: (context, model, child) {
           if (model.isLoading) {
@@ -57,6 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 30,
                 ),
                 FloatingActionButton(
+                  backgroundColor: Color(0xFF0d4680),
                   onPressed: model.getImage,
                   child: const Icon(Icons.image),
                 ),

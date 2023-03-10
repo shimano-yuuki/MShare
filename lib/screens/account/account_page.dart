@@ -25,6 +25,7 @@ class AccountScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Color(0xFF262626),
           appBar: AppBar(
+            backgroundColor: Color(0xFF262626),
             actions: <Widget>[
               if (FirebaseAuth.instance.currentUser!.uid == uid)
                 IconButton(

@@ -112,12 +112,13 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
     return Scaffold(
       backgroundColor: Color(0xFF262626),
       appBar: AppBar(
+          backgroundColor: Color(0xFF262626),
           title: const Text(
-        "プロフィール設定",
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      )),
+            "プロフィール設定",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          )),
       body: Center(
           child: SingleChildScrollView(
         child: Column(
@@ -140,6 +141,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
               height: 30,
             ),
             FloatingActionButton(
+              backgroundColor: Color(0xFF0d4680),
               onPressed: _getImage,
               child: const Icon(Icons.image),
             ),

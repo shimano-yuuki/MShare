@@ -48,6 +48,8 @@ class _NavigationWidgetState extends State<NavigationWidget> {
     return Scaffold(
         body: _screens[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.white,
+          backgroundColor: Color(0xFF0d4680),
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
           items: const <BottomNavigationBarItem>[

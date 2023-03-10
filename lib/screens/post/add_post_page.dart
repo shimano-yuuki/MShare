@@ -31,7 +31,10 @@ class _PostPageState extends State<PostPage> {
       ),
       child: Scaffold(
         backgroundColor: Color(0xFF262626),
-        appBar: AppBar(title: const Text("投稿画面")),
+        appBar: AppBar(
+          title: const Text("投稿画面"),
+          backgroundColor: Color(0xFF262626),
+        ),
         body: Consumer<AddPostModel>(builder: (context, model, child) {
           if (model.isLoading) {
             return const Scaffold(
@@ -63,6 +66,7 @@ class _PostPageState extends State<PostPage> {
                   height: 30,
                 ),
                 FloatingActionButton(
+                  backgroundColor: Color(0xFF0d4680),
                   onPressed: model.getImage,
                   child: const Icon(Icons.image),
                 ),
