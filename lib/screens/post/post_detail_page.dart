@@ -57,6 +57,7 @@ class PostDetail extends StatelessWidget {
                         imageTitle,
                         style: TextStyle(
                           fontSize: 25,
+                          color: Colors.white,
                         ),
                       ),
                       Container(
@@ -73,6 +74,7 @@ class PostDetail extends StatelessWidget {
                             imageExplanation,
                             style: TextStyle(
                               fontSize: 20,
+                              color: Colors.white,
                             ),
                           )),
                     ],
