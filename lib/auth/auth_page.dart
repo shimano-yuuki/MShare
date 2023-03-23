@@ -56,6 +56,12 @@ class _AuthPageState extends State<AuthPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Container(
+                  width: 200,
+                  child: Image.asset('assets/images/transparent_icon.png')),
+              SizedBox(
+                height: 100,
+              ),
               SizedBox(
                 width: double.infinity,
                 // ユーザー登録ボタン
@@ -75,7 +81,7 @@ class _AuthPageState extends State<AuthPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 40),
               SizedBox(
                 width: double.infinity,
                 // ログイン登録ボタン
