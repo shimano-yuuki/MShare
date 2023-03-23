@@ -5,29 +5,13 @@ import 'package:share_achieve_app/screens/Home/home.dart';
 import 'package:share_achieve_app/screens/account/account_page.dart';
 import 'package:share_achieve_app/screens/post/post_page.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const NavigationWidget(),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-class NavigationWidget extends StatefulWidget {
-  const NavigationWidget({Key? key}) : super(key: key);
-  @override
-  State<NavigationWidget> createState() => _NavigationWidgetState();
-}
-
-class _NavigationWidgetState extends State<NavigationWidget> {
+class _MyAppState extends State<MyApp> {
   final _screens = [
     const HomeScreen(),
     const PostScreen(),
