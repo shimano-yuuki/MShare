@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_achieve_app/app.dart';
 import 'package:share_achieve_app/auth/sign_up_page.dart';
+import 'package:url_launcher/link.dart';
 
 import 'log_in_page.dart';
 
@@ -61,6 +62,50 @@ class _AuthPageState extends State<AuthPage> {
                   child: Image.asset('assets/images/transparent_icon.png')),
               SizedBox(
                 height: 100,
+              ),
+              Link(
+                // 開きたいWebページのURLを指定
+                uri: Uri.parse(
+                    'https://spangled-crush-a71.notion.site/168ee57df1f645b58acb7780ba1ac016'),
+                // targetについては後述
+                target: LinkTarget.blank,
+                builder: (BuildContext ctx, FollowLink? openLink) {
+                  return TextButton(
+                    onPressed: openLink,
+                    child: const Text(
+                      '利用規約',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.zero),
+                      // minimumSize:
+                      //     MaterialStateProperty.all(Size.zero),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                  );
+                },
+              ),
+              Link(
+                // 開きたいWebページのURLを指定
+                uri: Uri.parse(
+                    'https://spangled-crush-a71.notion.site/aa67e0fb55264eb3a0bd34425eac5d4e'),
+                // targetについては後述
+                target: LinkTarget.blank,
+                builder: (BuildContext ctx, FollowLink? openLink) {
+                  return TextButton(
+                    onPressed: openLink,
+                    child: const Text(
+                      'プライバシーポリシー',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.zero),
+                      // minimumSize:
+                      //     MaterialStateProperty.all(Size.zero),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                  );
+                },
               ),
               SizedBox(
                 width: double.infinity,
