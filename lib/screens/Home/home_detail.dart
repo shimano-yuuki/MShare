@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 
 import 'home_content.dart';
 
@@ -23,6 +24,24 @@ class HomeDetail extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color(0xFF262626),
         title: Text(imageTitle),
+        actions: [
+          Link(
+            // 開きたいWebページのURLを指定
+            uri: Uri.parse(
+                'https://docs.google.com/forms/d/e/1FAIpQLSdxS56BChlXhdZNrq710DS7o2e_3j5eIDwNAaVYdgL6RXBmDQ/viewform'),
+            // targetについては後述
+            target: LinkTarget.blank,
+            builder: (BuildContext ctx, FollowLink? openLink) {
+              return TextButton(
+                onPressed: openLink,
+                child: const Text(
+                  '通報',
+                  style: TextStyle(fontSize: 12),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

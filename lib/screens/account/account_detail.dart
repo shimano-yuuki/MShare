@@ -26,6 +26,12 @@ class AccountDetail extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color(0xFF262626),
         title: Text(imageTitle),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
