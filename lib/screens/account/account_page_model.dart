@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutter/material.dart';
 
 import 'account.dart';
 import 'user.dart';
@@ -8,6 +9,7 @@ class AccountModel extends ChangeNotifier {
   // ユーザー情報
   AccountModel(this.uid);
   final String uid;
+  final userID = auth.FirebaseAuth.instance.currentUser?.uid ?? '';
   // ListView.builderで使うためのBookのList booksを用意しておく。
   List<Account> accountContentList = [];
   User? user;
@@ -35,5 +37,49 @@ class AccountModel extends ChangeNotifier {
     final user = User(doc);
     this.user = user;
     notifyListeners();
+  }
+
+  Future<void> blockUser() async {
+    FirebaseFirestore.instance
+        .collection('users') // コレクションID指定
+        .doc(userID)
+        .collection('blocks')
+        .doc()
+        .set({
+      'blockUserId': uid,
+    });
+    notifyListeners();
+  }
+
+  Future blockUserDialog(BuildContext context, String uid) {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        return AlertDialog(
+          title: Text("ブロックの確認"),
+          content: Text('このユーザーをブロックしますか？'),
+          actions: [
+            TextButton(
+              child: Text("いいえ"),
+              onPressed: () => Navigator.pop(context),
+            ),
+            TextButton(
+              child: Text("はい"),
+              onPressed: () async {
+                print('userId; $uid');
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('投稿者をブロックしました'),
+                    behavior: SnackBarBehavior.fixed, //デフォルト設定
+                  ),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

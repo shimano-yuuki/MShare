@@ -10,6 +10,7 @@ import 'account_profile_setting.dart';
 class AccountScreen extends StatelessWidget {
 // 引数からユーザー情報を受け取れるようにする
   const AccountScreen(this.uid, {super.key});
+
   // ユーザー情報
   final String uid;
 
@@ -47,7 +48,11 @@ class AccountScreen extends StatelessWidget {
               if (FirebaseAuth.instance.currentUser!.uid != uid)
                 IconButton(
                   icon: const Icon(Icons.not_interested_outlined),
-                  onPressed: () async {},
+                  onPressed: () async {
+                    print('userId; $uid');
+                    model.blockUserDialog(context, uid);
+                    model.blockUser();
+                  },
                 ),
             ],
           ),
@@ -60,16 +65,13 @@ class AccountScreen extends StatelessWidget {
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        InkWell(
-                          child: CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            backgroundImage: NetworkImage(
-                              user?.imgURL ??
-                                  'https://pics.prcm.jp/8fa8ecb4210ea/85340511/png/85340511_480x480.png',
-                            ),
-                            radius: 45,
+                        CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          backgroundImage: NetworkImage(
+                            user?.imgURL ??
+                                'https://pics.prcm.jp/8fa8ecb4210ea/85340511/png/85340511_480x480.png',
                           ),
-                          onTap: () {},
+                          radius: 45,
                         ),
                         SizedBox(width: 20),
                         Column(
