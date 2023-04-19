@@ -51,7 +51,6 @@ class AccountScreen extends StatelessWidget {
                   onPressed: () async {
                     print('userId; $uid');
                     model.blockUserDialog(context, uid);
-                    model.blockUser();
                   },
                 ),
             ],

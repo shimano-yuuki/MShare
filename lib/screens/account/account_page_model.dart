@@ -67,6 +67,7 @@ class AccountModel extends ChangeNotifier {
             TextButton(
               child: Text("はい"),
               onPressed: () async {
+                blockUser();
                 print('userId; $uid');
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
