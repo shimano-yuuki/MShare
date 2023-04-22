@@ -55,7 +55,7 @@ class _PostPageState extends State<PostPage> {
                   child: Container(
                       child: model.image == null
                           ? const Text(
-                              '画像はありません',
+                              '（必須）画像',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -73,7 +73,7 @@ class _PostPageState extends State<PostPage> {
                 SizedBox(height: 20),
                 // 投稿メッセージ入力
                 CommonTextFormField(
-                  labelText: '題名',
+                  labelText: '（任意）題名',
                   maxLines: 1,
                   onChanged: (String value) {
                     setState(() {
@@ -83,7 +83,7 @@ class _PostPageState extends State<PostPage> {
                 ),
                 SizedBox(height: 20),
                 CommonTextFormField(
-                  labelText: '説明',
+                  labelText: '（任意）説明',
                   maxLines: 3,
                   onChanged: (String value) {
                     setState(() {
