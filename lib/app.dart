@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _screens = [
-    const HomeScreen(),
+    HomeScreen(),
     const PostScreen(),
     if (FirebaseAuth.instance.currentUser != null)
       AccountScreen(FirebaseAuth.instance.currentUser!.uid)

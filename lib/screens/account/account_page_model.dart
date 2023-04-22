@@ -2,14 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 
+import '../../app.dart';
 import 'account.dart';
 import 'user.dart';
 
 class AccountModel extends ChangeNotifier {
-  // ユーザー情報
-  AccountModel(this.uid);
   final String uid;
   final userID = auth.FirebaseAuth.instance.currentUser?.uid ?? '';
+  // ユーザー情報
+  AccountModel(this.uid);
   // ListView.builderで使うためのBookのList booksを用意しておく。
   List<Account> accountContentList = [];
   User? user;
@@ -75,6 +76,11 @@ class AccountModel extends ChangeNotifier {
                     content: Text('投稿者をブロックしました'),
                     behavior: SnackBarBehavior.fixed, //デフォルト設定
                   ),
+                );
+                await Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) {
+                    return MyApp();
+                  }),
                 );
               },
             ),
