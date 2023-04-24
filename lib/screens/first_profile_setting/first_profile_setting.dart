@@ -130,7 +130,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
               child: Container(
                   child: _image == null
                       ? const Text(
-                          '画像を選んでください',
+                          '（必須）画像',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -151,7 +151,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
                 color: Colors.white,
               ),
               decoration: const InputDecoration(
-                labelText: '名前',
+                labelText: '（必須）名前',
                 labelStyle: TextStyle(
                   color: Colors.white,
                 ),
@@ -184,7 +184,7 @@ class _FirstProfileScreenState extends State<FirstProfileScreen> {
                 color: Colors.white,
               ),
               decoration: const InputDecoration(
-                labelText: '自己紹介',
+                labelText: '（任意）自己紹介',
                 labelStyle: TextStyle(
                   color: Colors.white,
                 ),
