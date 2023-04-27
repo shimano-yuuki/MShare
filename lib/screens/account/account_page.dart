@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../auth/auth_page.dart';
 import 'account_detail.dart';
 import 'account_page_model.dart';
 import 'account_profile_setting.dart';
@@ -28,28 +27,10 @@ class AccountScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Color(0xFF262626),
             actions: <Widget>[
-              if (FirebaseAuth.instance.currentUser!.uid == uid)
-                IconButton(
-                  icon: const Icon(Icons.logout),
-                  onPressed: () async {
-                    // ログアウト処理
-                    // 内部で保持しているログイン情報等が初期化される
-                    // （現時点ではログアウト時はこの処理を呼び出せばOKと、思うぐらいで大丈夫です）
-                    await FirebaseAuth.instance.signOut();
-                    // ログイン画面に遷移＋チャット画面を破棄
-                    await Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) {
-                        return AuthPage();
-                      }),
-                    );
-                  },
-                ),
-              //同じユーザーが開かなかった場合
               if (FirebaseAuth.instance.currentUser!.uid != uid)
                 IconButton(
                   icon: const Icon(Icons.not_interested_outlined),
                   onPressed: () async {
-                    print('userId; $uid');
                     model.blockUserDialog(context, uid);
                   },
                 ),

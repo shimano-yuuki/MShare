@@ -120,6 +120,32 @@ class HomeScreen extends StatelessWidget {
             );
           },
         ),
+        drawer: Consumer<HomeModel>(builder: (context, model, child) {
+          return Drawer(
+            backgroundColor: Color(0xFF262626),
+            child: ListView(
+              children: [
+                ListTile(
+                    title: Text('ログアウト',
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
+                    onTap: () {
+                      model.logoutDialog(context);
+                    }),
+                ListTile(
+                  title: Text('アカウント削除',
+                      style: TextStyle(
+                        color: Colors.white,
+                      )),
+                  onTap: () {
+                    model.deleteDialog(context);
+                  },
+                ),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
