@@ -32,12 +32,9 @@ class HomeDetail extends StatelessWidget {
             // targetについては後述
             target: LinkTarget.blank,
             builder: (BuildContext ctx, FollowLink? openLink) {
-              return TextButton(
+              return IconButton(
                 onPressed: openLink,
-                child: const Text(
-                  '通報',
-                  style: TextStyle(fontSize: 12),
-                ),
+                icon: const Icon(Icons.flag),
               );
             },
           ),
