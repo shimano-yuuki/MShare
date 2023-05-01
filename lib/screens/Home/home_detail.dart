@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/link.dart';
+import 'package:share_achieve_app/screens/Home/report.dart';
 
 import 'home_content.dart';
 
@@ -25,19 +25,17 @@ class HomeDetail extends StatelessWidget {
         backgroundColor: Color(0xFF262626),
         title: Text(imageTitle),
         actions: [
-          Link(
-            // 開きたいWebページのURLを指定
-            uri: Uri.parse(
-                'https://docs.google.com/forms/d/e/1FAIpQLSdxS56BChlXhdZNrq710DS7o2e_3j5eIDwNAaVYdgL6RXBmDQ/viewform'),
-            // targetについては後述
-            target: LinkTarget.blank,
-            builder: (BuildContext ctx, FollowLink? openLink) {
-              return IconButton(
-                onPressed: openLink,
-                icon: const Icon(Icons.flag),
+          IconButton(
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ReportPage(), // SecondPageは遷移先のクラス
+                ),
               );
             },
-          ),
+            icon: const Icon(Icons.flag),
+          )
         ],
       ),
       body: Padding(
