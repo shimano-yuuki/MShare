@@ -3,7 +3,7 @@ import 'package:share_achieve_app/screens/Home/report.dart';
 
 import 'home_content.dart';
 
-class HomeDetail extends StatelessWidget {
+class HomeDetail extends StatefulWidget {
   const HomeDetail({
     super.key,
     required this.imageUrl,
@@ -16,26 +16,38 @@ class HomeDetail extends StatelessWidget {
   final String imageTitle;
   final String imageExplanation;
   final HomeContent homeContent;
-
   @override
+  State<HomeDetail> createState() => _HomeDetailState();
+}
+
+class _HomeDetailState extends State<HomeDetail> {
+  @override
+  bool buttonEnabled = true;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF262626),
       appBar: AppBar(
         backgroundColor: Color(0xFF262626),
-        title: Text(imageTitle),
+        title: Text(widget.imageTitle),
         actions: [
           IconButton(
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReportPage(), // SecondPageは遷移先のクラス
-                ),
-              );
-            },
+            onPressed: buttonEnabled
+                ? () async {
+                    // ボタンが有効な場合の処理
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ReportPage(), // SecondPageは遷移先のクラス
+                      ),
+                    );
+                    setState(() {
+                      buttonEnabled = false; // ボタンを無効化する
+                    });
+                  }
+                : null, // タンが無効な場合はnullを設定する
             icon: const Icon(Icons.flag),
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -46,21 +58,21 @@ class HomeDetail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  imageTitle,
+                  widget.imageTitle,
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
                 Container(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 14),
                     child: Image.network(
-                      imageUrl,
+                      widget.imageUrl,
                     ),
                   ),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 20, left: 6),
                     child: Text(
-                      imageExplanation,
+                      widget.imageExplanation,
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
